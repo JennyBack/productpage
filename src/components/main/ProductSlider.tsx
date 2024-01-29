@@ -5,7 +5,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Product } from '../../App';
 
 type ProductSliderProps = {
-    products: Product[];
+    product: Product;
 };
 
 type Image = {
@@ -29,29 +29,42 @@ const ProductListItem = ({ image }: ProductListItemProps) => {
     );
 };
 
-const ProductSlider = ({ products }: ProductSliderProps) => {
-    const step = 8;
-    const isScrollRef = React.useRef();
-    let scrollRef = React.useRef<HTMLDivElement>(null);
-    let testRef = React.useRef<HTMLDivElement>(null);
+const ProductSlider = ({ product }: ProductSliderProps) => {
+    const [currentImageIndex, setCurrentImageIndex] = React.useState<number>(0);
+
+    const showNextImage = () => {
+        if (currentImageIndex < product.images.length - 1) {
+            setCurrentImageIndex(currentImageIndex + 1);
+        }
+        if (currentImageIndex === product.images.length - 1) {
+            setCurrentImageIndex(0);
+        }
+    };
+
+    const showPreviousImage = () => {
+        if (currentImageIndex < product.images.length) {
+            setCurrentImageIndex(currentImageIndex - 1);
+        }
+        if (currentImageIndex === 0) {
+            setCurrentImageIndex(product.images.length - 1);
+        }
+    };
 
     return (
-        <div ref={testRef} className={styles.sliderContainer}>
+        <div className={styles.sliderContainer}>
             <div aria-label="product-slider" className={styles.productsWrapper}>
-                <div ref={scrollRef} className={styles.buttonLeft}>
-                    <ChevronLeftIcon />
-                </div>
-
                 <div>
                     <ul className={styles.productsList}>
-                        {products.map((product: Product) =>
-                            product.images.map((image) => <ProductListItem image={image} />)
+                        <div className={styles.buttonLeft} onClick={showPreviousImage}>
+                            <ChevronLeftIcon />
+                        </div>
+                        {product.images.map((image, index) =>
+                            index === currentImageIndex ? <ProductListItem image={image} /> : null
                         )}
+                        <div className={styles.buttonRight} onClick={showNextImage}>
+                            <ChevronRightIcon />
+                        </div>
                     </ul>
-                </div>
-
-                <div ref={scrollRef} className={styles.buttonRight}>
-                    <ChevronRightIcon />
                 </div>
             </div>
         </div>

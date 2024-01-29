@@ -7,28 +7,38 @@
 
 .buttonRight {
     position: absolute;
-    right: 10%;
+    right: 5%;
+    top: 45%;
     cursor: pointer;
     background-color: lightgray;
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+    &:hover {
+        background-color: rgb(211, 211, 211, 0.2);
+    }
 }
 
 .buttonLeft {
     position: absolute;
-    left: 10%;
+    left: 5%;
+    top: 45%;
     cursor: pointer;
     background-color: lightgray;
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+    &:hover {
+        background-color: rgb(211, 211, 211, 0.2);
+    }
 }
 
 .productsWrapper {
@@ -63,19 +73,19 @@
     height: auto;
     object-fit: cover;
     overflow: hidden;
+    min-height: 300px;
 }
 
 .productsListItem {
     display: flex;
     position: relative;
     float: left;
-    height: 300px;
-    width: 360px;
+    height: 100%;
+    width: 100%;
 }
 
 @media screen and (max-width: 950px) {
     .sliderContainer {
-        overflow-x: scroll;
         margin: 1em;
     }
 }

@@ -40,7 +40,7 @@ function App() {
         <div>
             <Header />
             <main>
-                <ProductSlider products={Products} />
+                <ProductSlider product={Products[0]} />
             </main>
             <footer>
                 <div>footer</div>
