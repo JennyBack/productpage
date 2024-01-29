@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './components/header/Header';
-import ProductSlider from './components/main/ProductSlider';
+import ProductSlider from './components/main/productImageSlider/ProductSlider';
+import ProductInfo from './components/main/productInfo/ProductInfo';
+import useCheckMobileScreen from './hooks/useCheckMobileScreen';
 
 type Image = {
     src: string;
@@ -30,21 +32,27 @@ const Products: Product[] = [
         title: 'Fall limited edition sneakers',
         description:
             'These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.',
-        price: 125.0,
+        price: 1250.0,
         reducedByPercentage: 50
     }
 ];
 
 function App() {
+    let isMobile = useCheckMobileScreen();
     return (
         <div>
             <Header />
-            <main>
+            <main
+                style={{
+                    display: 'flex',
+                    flexWrap: isMobile ? 'wrap' : 'nowrap',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+            >
                 <ProductSlider product={Products[0]} />
+                <ProductInfo product={Products[0]} />
             </main>
-            <footer>
-                <div>footer</div>
-            </footer>
         </div>
     );
 }
