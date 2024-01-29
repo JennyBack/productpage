@@ -1,0 +1,81 @@
+.sliderContainer {
+    display: flex;
+    margin: 60px 15%;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.buttonRight {
+    position: absolute;
+    right: 10%;
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonLeft {
+    position: absolute;
+    left: 10%;
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productsWrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.productsList {
+    position: relative;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 0;
+}
+
+.listTextSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.productsListImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.productsListItem {
+    display: flex;
+    position: relative;
+    float: left;
+    height: 300px;
+    width: 360px;
+}
+
+@media screen and (max-width: 950px) {
+    .sliderContainer {
+        overflow-x: scroll;
+        margin: 1em;
+    }
+}
