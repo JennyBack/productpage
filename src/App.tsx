@@ -83,20 +83,102 @@ function App() {
                     display: 'flex',
                     flexWrap: isMobile ? 'wrap' : 'nowrap',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    width: '100%',
+                    margin: 'auto'
                 }}
             >
-                <ProductSlider product={product} />
-                <ProductInfo product={product} currency={currency} />
-                <ProductCounter
-                    productId={product.id}
-                    numberOfProducts={numberOfProducts}
-                    onAddProduct={handleAddProduct}
-                    onRemoveProduct={handleRemoveProduct}
-                    onAddToCart={handleAddToCart}
-                    label={'Add to cart'}
-                    numberOfItemsInCart={cartItems.length}
-                />
+                {isMobile ? (
+                    <ProductSlider product={product} />
+                ) : (
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '50%',
+                            height: '100%',
+                            margin: 0,
+                            padding: 0
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: 'lightgray',
+                                height: '550px',
+                                borderRadius: '15px',
+                                margin: !isMobile ? '20px 70px' : 0,
+                                overflow: 'hidden',
+                                width: '100%'
+                            }}
+                        >
+                            <img
+                                src={product.images[0].src}
+                                style={{
+                                    height: '100%',
+                                    width: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                            />
+                        </div>
+                        <div style={{ margin: !isMobile ? ' 0px 70px' : 0, width: '100%' }}>
+                            <ul
+                                style={{
+                                    display: 'flex',
+                                    listStyle: 'none',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    margin: 'auto',
+                                    padding: 0
+                                }}
+                            >
+                                {product.images.map((image, index) => (
+                                    <li
+                                        style={{
+                                            backgroundColor: 'lightgray',
+                                            height: '88px',
+                                            width: '88px',
+                                            borderRadius: '10px',
+                                            overflow: 'hidden'
+                                        }}
+                                    >
+                                        <img
+                                            src={image.src}
+                                            style={{
+                                                height: '100%',
+                                                width: 'auto',
+                                                objectFit: 'contain'
+                                            }}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                )}
+                <div
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        width: !isMobile ? '50%' : '100%',
+                        padding: !isMobile ? '100px' : 0
+                    }}
+                >
+                    <ProductInfo product={product} currency={currency} />
+                    <ProductCounter
+                        productId={product.id}
+                        numberOfProducts={numberOfProducts}
+                        onAddProduct={handleAddProduct}
+                        onRemoveProduct={handleRemoveProduct}
+                        onAddToCart={handleAddToCart}
+                        label={'Add to cart'}
+                        numberOfItemsInCart={cartItems.length}
+                        isMobile={isMobile}
+                    />
+                </div>
+
                 {openCart ? (
                     <Cart
                         cartItems={cartItems}

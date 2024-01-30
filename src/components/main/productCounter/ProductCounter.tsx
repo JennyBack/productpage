@@ -24,7 +24,7 @@ const CounterStyle = {
     letterSpacing: '1.28px'
 };
 
-const AddToCartButtonStyle = (disableCartButton?: boolean) => {
+const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) => {
     return {
         border: 'none',
         padding: 0,
@@ -34,7 +34,7 @@ const AddToCartButtonStyle = (disableCartButton?: boolean) => {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 'auto',
-        width: '100%',
+        width: isMobile ? '100%' : '70%',
         borderRadius: '10px',
         backgroundColor: !disableCartButton ? '#77AA9E' : 'lightgray',
         boxShadow: '0px 8px 10px 0px #FFEDE0'
@@ -49,6 +49,7 @@ type ProductCounterProps = {
     onAddToCart: (productId: number) => void;
     label: string;
     numberOfItemsInCart: number;
+    isMobile: boolean;
 };
 
 const ProductCounter = ({
@@ -58,14 +59,17 @@ const ProductCounter = ({
     onRemoveProduct,
     onAddToCart,
     label,
-    numberOfItemsInCart
+    numberOfItemsInCart,
+    isMobile
 }: ProductCounterProps) => {
     return (
         <div
             style={{
                 display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 width: '100%',
-                flexDirection: 'column',
+                flexDirection: isMobile ? 'column' : 'row',
                 padding: '10px 24px '
             }}
         >
@@ -74,8 +78,9 @@ const ProductCounter = ({
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    width: '100%',
-                    margin: '0 0 12px 0',
+                    width: isMobile ? '100%' : '30%',
+                    flexWrap: 'nowrap',
+                    margin: isMobile ? '0 0 12px 0' : 0,
                     backgroundColor: '#F7F8FD'
                 }}
             >
@@ -88,7 +93,7 @@ const ProductCounter = ({
                 </button>
             </div>
             <button
-                style={AddToCartButtonStyle(numberOfItemsInCart > 0)}
+                style={AddToCartButtonStyle(numberOfItemsInCart > 0, isMobile)}
                 onClick={() => {
                     onAddToCart(productId);
                 }}
