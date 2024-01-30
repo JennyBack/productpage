@@ -59,7 +59,9 @@ const ProductSlider = ({ product }: ProductSliderProps) => {
                             <ChevronLeftIcon />
                         </div>
                         {product.images.map((image, index) =>
-                            index === currentImageIndex ? <ProductListItem image={image} /> : null
+                            index === currentImageIndex ? (
+                                <ProductListItem key={image.src} image={image} />
+                            ) : null
                         )}
                         <div className={styles.buttonRight} onClick={showNextImage}>
                             <ChevronRightIcon />

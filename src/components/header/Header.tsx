@@ -3,11 +3,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+type HeaderProps = {
+    numberOfCartItems: number;
+    onOpenCart: () => void;
+    label: string;
+};
+
 const HeaderStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: ' 8px 24px 21px 24px'
+    margin: '8px 24px 0px 24px'
 };
 
 const IconButtonStyle = {
@@ -41,7 +47,7 @@ const LogoTextStyle = {
     margin: '0 0 0 16px'
 };
 
-const Header = () => {
+const Header = ({ numberOfCartItems, onOpenCart, label }: HeaderProps) => {
     const [showNavigation, setShowNavigation] = React.useState<boolean>(false);
     return (
         <>
@@ -58,7 +64,7 @@ const Header = () => {
                         <MenuIcon onClick={() => setShowNavigation(!showNavigation)} />
                     </button>
                     <button style={LogoButtonStyle}>
-                        <h2 style={LogoTextStyle}>sneakers</h2>
+                        <h2 style={LogoTextStyle}>{label}</h2>
                     </button>
                 </div>
                 <div
@@ -73,7 +79,28 @@ const Header = () => {
                         <AccountCircleIcon />
                     </button>
                     <button style={IconButtonStyle}>
-                        <ShoppingCartIcon />
+                        <div style={{ position: 'relative' }} onClick={onOpenCart}>
+                            <ShoppingCartIcon />
+                            {numberOfCartItems != 0 ? (
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        position: 'absolute',
+                                        top: '-7px',
+                                        right: '-10px',
+                                        borderRadius: '50%',
+                                        width: '20px',
+                                        height: '20px',
+                                        backgroundColor: 'rgb(119, 170, 158, 0.7)',
+                                        color: 'white'
+                                    }}
+                                >
+                                    {numberOfCartItems}
+                                </div>
+                            ) : null}
+                        </div>
                     </button>
                 </div>
             </header>

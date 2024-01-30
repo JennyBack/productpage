@@ -3,12 +3,12 @@ import styles from './ProductInfo.module.css';
 
 type ProductInfoProps = {
     product: Product;
+    currency: string;
 };
 
-const ProductInfo = ({ product }: ProductInfoProps) => {
-    let currency = 'kr';
+const ProductInfo = ({ product, currency }: ProductInfoProps) => {
     return (
-        <div style={{ margin: '20px' }}>
+        <div style={{ margin: '0 20px 0 20px' }}>
             <h5 className={styles.productMakeText}>{product.make}</h5>
             <h2 className={styles.productTitle}>{product.title}</h2>
             <p className={styles.productDescription}>{product.description}</p>
