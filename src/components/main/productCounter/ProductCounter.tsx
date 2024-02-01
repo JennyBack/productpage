@@ -80,7 +80,7 @@ const ProductCounter = ({
                     alignItems: 'center',
                     width: isMobile ? '100%' : '30%',
                     flexWrap: 'nowrap',
-                    margin: isMobile ? '0 0 12px 0' : 0,
+                    margin: isMobile ? '0 0 12px 0' : '5px',
                     backgroundColor: '#F7F8FD'
                 }}
             >

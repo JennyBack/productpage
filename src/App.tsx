@@ -5,8 +5,9 @@ import ProductInfo from './components/main/productInfo/ProductInfo';
 import useCheckMobileScreen from './hooks/useCheckMobileScreen';
 import ProductCounter from './components/main/productCounter/ProductCounter';
 import Cart from './components/main/cart/Cart';
+import ProductImageGallery from './components/main/productImageGallery/ProductImageGallery';
 
-type Image = {
+export type Image = {
     src: string;
 };
 
@@ -71,6 +72,38 @@ function App() {
         reducedByPercentage: 50
     };
 
+    const ProductPageContainerStyle = {
+        display: 'flex',
+        justifyContent: isMobile ? 'center' : 'flex-end',
+        alignItems: 'center',
+        width: isMobile ? '100%' : '50%',
+        height: '100%',
+        margin: 0,
+        padding: 0,
+        flexDirecton: 'column'
+    };
+
+    const ProductInfoSectionStyle = {
+        display: 'flex',
+        justifyContent: isMobile ? 'center' : 'flex-start',
+        alignItems: 'center',
+        width: isMobile ? '100%' : '50%',
+        height: '100%',
+        margin: 0,
+        padding: 0,
+        flexDirecton: 'column'
+    };
+
+    const ProductInfoWrapperStyle = {
+        display: 'flex',
+        justifyContent: isMobile ? 'center' : 'flex-start',
+        alignItems: 'center',
+        padding: isMobile ? 0 : '3em',
+        overflow: 'hidden',
+        maxWidth: '600px',
+        flexDirection: 'column'
+    };
+
     return (
         <div>
             <Header
@@ -78,6 +111,7 @@ function App() {
                 onOpenCart={handleOpenCart}
                 label={'candles'}
             />
+
             <main
                 style={{
                     display: 'flex',
@@ -85,98 +119,41 @@ function App() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    margin: 'auto'
+                    height: '100%',
+                    margin: isMobile ? 0 : '5em auto'
                 }}
             >
                 {isMobile ? (
                     <ProductSlider product={product} />
                 ) : (
+                    <div aria-label="image-gallery" style={ProductPageContainerStyle}>
+                        <ProductImageGallery images={product.images} />
+                    </div>
+                )}
+                <div style={ProductInfoSectionStyle}>
                     <div
                         style={{
                             display: 'flex',
-                            flexDirection: 'column',
-                            width: '50%',
-                            height: '100%',
-                            margin: 0,
-                            padding: 0
+                            justifyContent: isMobile ? 'center' : 'flex-start',
+                            alignItems: 'center',
+                            padding: isMobile ? '0.5em' : '3em',
+                            overflow: 'hidden',
+                            maxWidth: '600px',
+                            flexDirection: 'column'
                         }}
                     >
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                backgroundColor: 'lightgray',
-                                height: '550px',
-                                borderRadius: '15px',
-                                margin: !isMobile ? '20px 70px' : 0,
-                                overflow: 'hidden',
-                                width: '100%'
-                            }}
-                        >
-                            <img
-                                src={product.images[0].src}
-                                style={{
-                                    height: '100%',
-                                    width: 'auto',
-                                    objectFit: 'contain'
-                                }}
-                            />
-                        </div>
-                        <div style={{ margin: !isMobile ? ' 0px 70px' : 0, width: '100%' }}>
-                            <ul
-                                style={{
-                                    display: 'flex',
-                                    listStyle: 'none',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    margin: 'auto',
-                                    padding: 0
-                                }}
-                            >
-                                {product.images.map((image, index) => (
-                                    <li
-                                        style={{
-                                            backgroundColor: 'lightgray',
-                                            height: '88px',
-                                            width: '88px',
-                                            borderRadius: '10px',
-                                            overflow: 'hidden'
-                                        }}
-                                    >
-                                        <img
-                                            src={image.src}
-                                            style={{
-                                                height: '100%',
-                                                width: 'auto',
-                                                objectFit: 'contain'
-                                            }}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <ProductInfo product={product} currency={currency} />
+                        <ProductCounter
+                            productId={product.id}
+                            numberOfProducts={numberOfProducts}
+                            onAddProduct={handleAddProduct}
+                            onRemoveProduct={handleRemoveProduct}
+                            onAddToCart={handleAddToCart}
+                            label={'Add to cart'}
+                            numberOfItemsInCart={cartItems.length}
+                            isMobile={isMobile}
+                        />
                     </div>
-                )}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        width: !isMobile ? '50%' : '100%',
-                        padding: !isMobile ? '100px' : 0
-                    }}
-                >
-                    <ProductInfo product={product} currency={currency} />
-                    <ProductCounter
-                        productId={product.id}
-                        numberOfProducts={numberOfProducts}
-                        onAddProduct={handleAddProduct}
-                        onRemoveProduct={handleRemoveProduct}
-                        onAddToCart={handleAddToCart}
-                        label={'Add to cart'}
-                        numberOfItemsInCart={cartItems.length}
-                        isMobile={isMobile}
-                    />
                 </div>
 
                 {openCart ? (
