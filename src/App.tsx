@@ -5,7 +5,7 @@ import Cart from './components/main/cart/Cart';
 import ProductImageGallery from './components/main/productImageGallery/ProductImageGallery';
 import useCart from './state/useCart';
 import ProductInfoSection from './components/main/productInfoSection/ProductInfoSection';
-import { product } from './mockData';
+import { menuItems, product } from './mockData';
 import './app.css';
 
 function App() {
@@ -29,6 +29,8 @@ function App() {
                 numberOfCartItems={cartItems.length}
                 onOpenCart={handleOpenCart}
                 label={'candles'}
+                isMobile={isMobile}
+                menuItems={menuItems}
             />
             <main className={'main'}>
                 {isMobile ? (

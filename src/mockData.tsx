@@ -1,4 +1,4 @@
-import { Product } from './types';
+import { MenuItem, Product } from './types';
 
 export const product: Product = {
     id: 1,
@@ -16,3 +16,11 @@ export const product: Product = {
     price: 1250.0,
     reducedByPercentage: 50
 };
+
+export const menuItems: MenuItem[] = [
+    { id: 1, title: 'collections' },
+    { id: 2, title: 'candles' },
+    { id: 3, title: 'furniture' },
+    { id: 4, title: 'about' },
+    { id: 5, title: 'contact' }
+];

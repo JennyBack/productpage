@@ -11,3 +11,8 @@ export type Product = {
     price: number;
     reducedByPercentage: number | null;
 };
+
+export type MenuItem = {
+    id: number;
+    title: string;
+};
