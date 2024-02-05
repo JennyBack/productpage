@@ -14,11 +14,7 @@ const TopNavigationBar = ({ menuItems }: TopNavigationBarProps) => {
             <ul>
                 {menuItems.length > 0 &&
                     menuItems.map((item, index) => (
-                        <li
-                            key={item.id}
-                            onClick={() => setSelectedMenuItem(index)}
-                            // className={selectedMenuItem === index ? styles.selectedMenuItem : ''}
-                        >
+                        <li key={item.id} onClick={() => setSelectedMenuItem(index)}>
                             {item.title}
                             {selectedMenuItem === index ? (
                                 <span className={styles.selectedMenuItem} />

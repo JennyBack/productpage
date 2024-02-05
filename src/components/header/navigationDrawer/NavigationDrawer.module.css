@@ -1,0 +1,16 @@
+.navigationDrawer {
+    position: fixed;
+    height: 100%;
+    background: white;
+    top: 66px;
+    right: 100%;
+    width: 40%;
+    z-index: 200;
+    opacity: 0.9;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-out;
+}
+
+.open {
+    transform: translateX(100%);
+}

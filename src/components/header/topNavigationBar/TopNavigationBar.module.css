@@ -22,6 +22,7 @@
     font-family: Kumbh sans;
     font-size: 16px;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 .selectedMenuItem {

@@ -6,6 +6,7 @@ import styles from './Header.module.css';
 
 import HeaderLeftSection from './headerLeftSection/HeaderLeftSection';
 import { MenuItem } from '../../types';
+import NavigationDrawer from './navigationDrawer/NavigationDrawer';
 
 type HeaderProps = {
     numberOfCartItems: number;
@@ -41,7 +42,7 @@ const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: H
                     </button>
                 </div>
             </header>
-            {showNavigation ? <nav>navigation</nav> : null}
+            <NavigationDrawer menuItems={menuItems} isOpen={isMobile && showNavigation} />
         </>
     );
 };
