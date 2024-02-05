@@ -1,4 +1,4 @@
-import { Product } from '../../../App';
+import { Product } from '../../../types';
 import styles from './Cart.module.css';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 

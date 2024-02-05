@@ -2,7 +2,7 @@ import React, { Children, useState } from 'react';
 import styles from './ProductSlider.module.css';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Product } from '../../../App';
+import { Product } from '../../../types';
 
 type ProductSliderProps = {
     product: Product;
