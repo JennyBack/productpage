@@ -21,7 +21,7 @@
     position: absolute;
     top: 45%;
     cursor: pointer;
-    background-color: lightgray;
+    background-color: var(--lightgrey--);
     border-radius: 50%;
     height: 35px;
     width: 35px;
@@ -30,7 +30,7 @@
     justify-content: center;
     z-index: 100;
     &:focus {
-        background-color: lightgray;
+        background-color: var(--lightgrey--);
     }
     border: none;
     cursor: pointer;
@@ -63,7 +63,7 @@
 }
 
 .sliderContainer.onLoading {
-    background-color: lightgray;
+    background-color: var(--lightgrey--);
 }
 
 .sliderContainer img {
@@ -87,4 +87,8 @@
 
 .sliderContainer img {
     animation: fadein 3s;
+}
+
+.icon {
+    color: var(--icons--);
 }

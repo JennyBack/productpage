@@ -19,7 +19,7 @@ const NavigationDrawer = ({ menuItems, isOpen, onClose }: NavigationDrawerProps)
             }
         >
             <button>
-                <CloseIcon onClick={onClose} />
+                <CloseIcon onClick={onClose} className={styles.icon} />
             </button>
             {menuItems.length > 0 && (
                 <ul>
