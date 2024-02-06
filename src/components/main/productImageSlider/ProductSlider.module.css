@@ -1,0 +1,91 @@
+.sliderContainer {
+    display: flex;
+    margin: 60px 15%;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.buttonRight {
+    position: absolute;
+    right: 5%;
+    top: 45%;
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    &:hover {
+        background-color: rgb(211, 211, 211, 0.2);
+    }
+}
+
+.buttonLeft {
+    position: absolute;
+    left: 5%;
+    top: 45%;
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    &:hover {
+        background-color: rgb(211, 211, 211, 0.2);
+    }
+}
+
+.productsWrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.productsList {
+    position: relative;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 0;
+}
+
+.listTextSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.productsListImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.productsListItem {
+    display: flex;
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width: 950px) {
+    .sliderContainer {
+        margin: 0;
+    }
+}

@@ -1,0 +1,49 @@
+.productMakeText {
+    color: var(--primary--);
+    font-family: 'Kumbh Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+}
+
+.productTitle {
+    color: var(--Very-dark-blue, #1d2025);
+    font-family: 'Kumbh Sans';
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 114.286% */
+}
+
+.productDescription {
+    color: var(--Grayish-blue, #68707d);
+    font-family: 'Kumbh Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 178.571% */
+    letter-spacing: 0.56px;
+}
+
+.productPrice {
+    color: var(--Very-dark-blue, #1d2025);
+    font-family: 'Kumbh Sans';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 86.667% */
+}
+
+.productOldPrice {
+    color: var(--Very-dark-blue, #1d2025);
+    font-family: 'Kumbh Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 162.5% */
+    letter-spacing: 0.48px;
+    text-decoration-line: line-through;
+}

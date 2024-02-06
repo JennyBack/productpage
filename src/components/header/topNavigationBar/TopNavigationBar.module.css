@@ -1,0 +1,44 @@
+.topNavigationBar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.topNavigationBar ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    position: relative;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+}
+
+.topNavigationBar li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: Kumbh sans;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.selectedMenuItem {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-bottom: 6px solid var(--primary--);
+    z-index: 10;
+}
+
+.headerLeftDivider {
+    width: 100%;
+    position: absolute;
+    top: 53px;
+    left: 0;
+    border-bottom: 1px solid var(--secondary--);
+    padding: inherit;
+}

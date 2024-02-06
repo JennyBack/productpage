@@ -1,0 +1,29 @@
+.side-drawer {
+    position: fixed;
+    height: 100%;
+    background: white;
+    top: 66px;
+    right: 100%;
+    width: 55%;
+    z-index: 200;
+    opacity: 0.9;
+    /* transform: translateX(0%); */
+    transition: transform 0.5s ease-out;
+}
+.side-drawer.open {
+    transform: translateX(100%);
+}
+
+.side-drawer ul {
+    list-style: none;
+    padding: 1em;
+}
+
+.side-drawer li {
+    text-align: start;
+    font-family: Kumbh sans;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 25px;
+}
