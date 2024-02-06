@@ -1,56 +1,12 @@
 .sliderContainer {
     display: flex;
-    margin: 60px 15%;
+    margin: 0;
     justify-content: center;
     overflow: hidden;
-}
-
-.buttonRight {
-    position: absolute;
-    right: 5%;
-    top: 45%;
-    cursor: pointer;
-    background-color: lightgray;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    &:hover {
-        background-color: rgb(211, 211, 211, 0.2);
-    }
-}
-
-.buttonLeft {
-    position: absolute;
-    left: 5%;
-    top: 45%;
-    cursor: pointer;
-    background-color: lightgray;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    &:hover {
-        background-color: rgb(211, 211, 211, 0.2);
-    }
-}
-
-.productsWrapper {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    height: 100%;
-    width: 100%;
     margin-top: 20px;
 }
 
-.productsList {
+.sliderContainer ul {
     position: relative;
     left: 0;
     margin: 0;
@@ -61,14 +17,44 @@
     padding: 0;
 }
 
-.listTextSection {
+.sliderContainer button {
+    position: absolute;
+    top: 45%;
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    &:focus {
+        background-color: lightgray;
+    }
+    border: none;
+    cursor: pointer;
+}
+
+.buttonRight {
+    right: 5%;
+}
+
+.buttonLeft {
+    left: 5%;
+}
+
+.sliderContainer li {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
+    min-height: 300px;
+    height: auto;
+    width: 100vw;
 }
 
-.productsListImage {
+.sliderContainer img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -76,16 +62,29 @@
     min-height: 300px;
 }
 
-.productsListItem {
-    display: flex;
-    position: relative;
-    float: left;
-    height: 100%;
-    width: 100%;
+.sliderContainer.onLoading {
+    background-color: lightgray;
 }
 
-@media screen and (max-width: 950px) {
-    .sliderContainer {
-        margin: 0;
+.sliderContainer img {
+    opacity: 1;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0.2;
     }
+    10% {
+        opacity: 0.5;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sliderContainer img {
+    animation: fadein 3s;
 }

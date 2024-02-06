@@ -1,5 +1,5 @@
 import Header from './components/header/Header';
-import ProductSlider from './components/main/productImageSlider/ProductSlider';
+import ProductImageSlider from './components/main/productImageSlider/ProductImageSlider';
 import useCheckMobileScreen from './hooks/useCheckMobileScreen';
 import Cart from './components/main/cart/Cart';
 import ProductImageGallery from './components/main/productImageGallery/ProductImageGallery';
@@ -34,7 +34,7 @@ function App() {
             />
             <main className={'main'}>
                 {isMobile ? (
-                    <ProductSlider product={product} />
+                    <ProductImageSlider images={product.images} />
                 ) : (
                     <ProductImageGallery images={product.images} />
                 )}
