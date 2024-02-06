@@ -18,6 +18,7 @@ type HeaderProps = {
 
 const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: HeaderProps) => {
     const [showNavigation, setShowNavigation] = React.useState<boolean>(false);
+
     return (
         <>
             <header aria-label="header" className={styles.header}>
@@ -42,7 +43,11 @@ const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: H
                     </button>
                 </div>
             </header>
-            <NavigationDrawer menuItems={menuItems} isOpen={isMobile && showNavigation} />
+            <NavigationDrawer
+                menuItems={menuItems}
+                isOpen={isMobile && showNavigation}
+                onClose={() => setShowNavigation(false)}
+            />
         </>
     );
 };
