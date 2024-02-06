@@ -2,15 +2,44 @@
     position: fixed;
     height: 100%;
     background: white;
-    top: 66px;
+    top: 0;
     right: 100%;
-    width: 40%;
+    width: 55%;
     z-index: 200;
-    opacity: 0.9;
-    transform: translateX(0%);
+    /* transform: translateX(0%); */
     transition: transform 0.5s ease-out;
 }
 
-.open {
+.navigationDrawer.open {
     transform: translateX(100%);
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+}
+
+.navigationDrawer ul {
+    list-style: none;
+    padding: 1em;
+}
+
+.navigationDrawer li {
+    text-align: start;
+    font-family: Kumbh sans;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 25px;
+}
+
+.selectedNavItem {
+    color: var(--primary--);
+}
+
+.navigationDrawer button {
+    background-color: transparent;
+    border: none;
+    padding: 1em;
+    font: inherit;
+    border-radius: 0;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
 }

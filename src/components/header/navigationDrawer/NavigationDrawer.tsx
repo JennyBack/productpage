@@ -1,19 +1,38 @@
+import useSelectedMenuItem from '../../../state/useSelectedMenuItem';
 import { MenuItem } from '../../../types';
-// import styles from './NavigationDrawer.module.css';
-import './NavigationDrawer.css';
+import styles from './NavigationDrawer.module.css';
+import CloseIcon from '@mui/icons-material/Close';
 
 type NavigationDrawerProps = {
     menuItems: MenuItem[];
     isOpen: boolean;
+    onClose: () => void;
 };
 
-const NavigationDrawer = ({ menuItems, isOpen }: NavigationDrawerProps) => {
+const NavigationDrawer = ({ menuItems, isOpen, onClose }: NavigationDrawerProps) => {
+    let { selectedMenuItem, handleSelectMenuItem } = useSelectedMenuItem();
+
     return (
-        <nav className={isOpen ? 'side-drawer open' : 'side-drawer'}>
+        <nav
+            className={
+                isOpen ? `${styles.navigationDrawer} ${styles.open}` : `${styles.navigationDrawer}`
+            }
+        >
+            <button>
+                <CloseIcon onClick={onClose} />
+            </button>
             {menuItems.length > 0 && (
                 <ul>
                     {menuItems.map((item, index) => (
-                        <li key={item.id}>{item.title}</li>
+                        <li
+                            // onClick={() => handleSelectMenuItem(index)}
+                            key={item.id}
+                            className={
+                                selectedMenuItem === index ? `${styles.selectedNavItem}` : ''
+                            }
+                        >
+                            {item.title}
+                        </li>
                     ))}
                 </ul>
             )}
