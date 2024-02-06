@@ -98,7 +98,7 @@ const Cart = ({ cartItems, currency, numberOfProducts, onRemoveFromCart }: CartP
                             </p>
                         </div>
                         <button style={IconButtonStyle} onClick={() => onRemoveFromCart(item)}>
-                            <DeleteOutlineIcon />
+                            <DeleteOutlineIcon className={styles.icon} />
                         </button>
                     </div>
                 ))

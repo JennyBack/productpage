@@ -4,3 +4,11 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.headerLeft h2 {
+    color: black;
+}
+
+.icon {
+    color: var(--icons--);
+}

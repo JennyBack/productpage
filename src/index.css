@@ -1,6 +1,9 @@
 :root {
     --primary--: rgb(119, 170, 158);
     --secondary--: rgb(247, 248, 253);
+    --icons--: rgb(0, 0, 0, 0.5);
+    --white--: rgb(255, 255, 255);
+    --lightgrey--: rgb(211, 211, 211);
 }
 
 * {

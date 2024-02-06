@@ -31,11 +31,11 @@ const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: H
                 />
                 <div aria-label="header-right-section" className={styles.headerRight}>
                     <button className={styles.iconButton}>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon className={styles.icon} />
                     </button>
                     <button className={styles.iconButton}>
                         <div style={{ position: 'relative' }} onClick={onOpenCart}>
-                            <ShoppingCartIcon />
+                            <ShoppingCartIcon className={styles.icon} />
                             {numberOfCartItems != 0 ? (
                                 <div className={styles.cartCounter}>{numberOfCartItems}</div>
                             ) : null}

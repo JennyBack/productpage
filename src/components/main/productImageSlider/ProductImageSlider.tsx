@@ -37,11 +37,11 @@ const ProductImageSlider = ({ images }: ProductSliderProps) => {
                         index === currentImageIndex ? (
                             <li key={image.src + index}>
                                 <button className={styles.buttonLeft} onClick={showPreviousImage}>
-                                    <ChevronLeftIcon />
+                                    <ChevronLeftIcon className={styles.icon} />
                                 </button>
                                 <img id={image.src} src={image.src} alt="product" />
                                 <button className={styles.buttonRight} onClick={showNextImage}>
-                                    <ChevronRightIcon />
+                                    <ChevronRightIcon className={styles.icon} />
                                 </button>
                             </li>
                         ) : null

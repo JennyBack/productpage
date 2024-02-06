@@ -23,7 +23,10 @@ const HeaderLeftSection = ({
             {isMobile ? (
                 <>
                     <button className={headerStyles.iconButton}>
-                        <MenuIcon onClick={() => onToggleNavigation(!showNavigation)} />
+                        <MenuIcon
+                            onClick={() => onToggleNavigation(!showNavigation)}
+                            className={styles.icon}
+                        />
                     </button>
                     <button className={headerStyles.logoButton}>
                         <h2>{label}</h2>
