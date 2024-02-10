@@ -1,5 +1,5 @@
 import Header from './components/header/Header';
-import ProductImageSlider from './components/main/productImageSlider/ProductImageSlider';
+// import ProductImageSlider from './components/main/productImageSlider/ProductImageSlider';
 import useCheckMobileScreen from './hooks/useCheckMobileScreen';
 import Cart from './components/main/cart/Cart';
 import ProductImageGallery from './components/main/productImageGallery/ProductImageGallery';
@@ -7,6 +7,7 @@ import useCart from './state/useCart';
 import ProductInfoSection from './components/main/productInfoSection/ProductInfoSection';
 import { menuItems, product } from './mockData';
 import './app.css';
+import ProductImageSliderV2 from './components/main/productImageSlider/V2/ProductImageSliderV2';
 
 function App() {
     let {
@@ -34,7 +35,7 @@ function App() {
             />
             <main className={'main'}>
                 {isMobile ? (
-                    <ProductImageSlider images={product.images} />
+                    <ProductImageSliderV2 images={product.images} />
                 ) : (
                     <ProductImageGallery images={product.images} />
                 )}
