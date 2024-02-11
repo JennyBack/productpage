@@ -4,11 +4,8 @@
     margin: 0;
     margin-top: 1rem;
     max-width: 34rem;
-    /* overflow-y: auto; */
-    /* overflow-x: hidden; */
     scroll-behavior: smooth;
     height: 32rem;
-    /* height: 100vh; */
     overflow: scroll;
     scroll-snap-type: y mandatory;
     width: 100%;
@@ -23,6 +20,7 @@
     min-height: 32rem;
     max-height: 32rem;
     scroll-snap-align: center;
+    margin-bottom: 10px;
 }
 
 .sliderContainerButtons {
@@ -35,18 +33,13 @@
 
 .sliderContainerButtons a {
     border-radius: 50%;
-    width: 1em;
-    height: 1em;
+    width: 0.5em;
+    height: 0.5em;
     margin: 0.3rem;
-    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
     scroll-behavior: smooth;
-    opacity: 0.5;
-    /* transform: 250ms; */
-    &:focus {
-        opacity: 1;
-    }
 }
 
 .active {
-    border: 1px solid red;
+    background-color: black;
 }

@@ -9,21 +9,19 @@ type ProductSliderProps = {
 const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
-    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const imageRef: React.MutableRefObject<any | null[]> = useRef([]);
 
-    // const handleTouchMove = (index: number) => {
-    //     if (index != currentImageIndex) {
-    //         setCurrentImageIndex((prevState) => (prevState = index));
-    //     }
-    // };
-
-    const imageRef: React.MutableRefObject<HTMLImageElement | null> = useRef(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const handleVisibleImg = ([entry]: any) => {
-        let imgIndex = images.findIndex((image) => image.src === entry.target.id);
-        setIsVisible(entry.isIntersecting);
-        setCurrentImageIndex(imgIndex);
+    const handleVisibleImg = (entries: any) => {
+        entries.forEach((entry: any) => {
+            if (entry.isIntersecting) {
+                let imgIndex = images.findIndex((image) => image.src === entry.target.id);
+                if (entry.isIntersecting) {
+                    setCurrentImageIndex(imgIndex);
+                }
+            }
+        });
     };
 
     const options = {
@@ -35,17 +33,12 @@ const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
     useEffect(() => {
         const observer = new IntersectionObserver(handleVisibleImg, options);
 
-        observer.observe(imageRef.current as HTMLElement);
+        images.forEach((image, index) => {
+            observer.observe(imageRef.current[index] as HTMLImageElement);
+        });
 
         return () => observer.disconnect();
     }, []);
-
-    // useEffect(() => {
-    //     if (isVisible) {
-    //     }
-    // }, [isVisible]);
-
-    console.log('isVisible', isVisible);
 
     return (
         <div
@@ -53,80 +46,27 @@ const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
             className={styles.sliderContainer}
             aria-label="product-image-slider"
         >
-            <img
-                style={{ height: '100vh' }}
-                key={images[0].src}
-                id={images[0].src}
-                src={images[0].src}
-                alt="product"
-            />
-
-            <img
-                style={{ height: '100vh' }}
-                ref={imageRef}
-                key={images[1].src}
-                id={images[1].src}
-                src={images[1].src}
-                alt="product"
-            />
-
-            <img
-                style={{ height: '100vh' }}
-                key={images[2].src}
-                id={images[2].src}
-                src={images[2].src}
-                alt="product"
-            />
-
-            {/* {images.length > 0 &&
-                images.map((image, index) => {
-                    let counter = index + 1;
-                    return (
-                        <>
-                            <img
-                                key={image.src}
-                                id={image.src}
-                                src={image.src}
-                                alt="product"
-                                onTouchMove={() => handleTouchMove(index)}
-                            />
-                            {index === currentImageIndex ? (
-                                <p
-                                    style={{
-                                        position: 'absolute',
-                                        bottom: '1.2rem',
-                                        zIndex: '100'
-                                    }}
-                                >
-                                    {counter}/{images.length}
-                                </p>
-                            ) : null}
-                        </>
-                    );
-                })} */}
+            {images.length > 0 &&
+                images.map((image, index) => (
+                    <img
+                        ref={(element) => (imageRef.current[index] = element)}
+                        key={image.src}
+                        id={image.src}
+                        src={image.src}
+                        alt="product"
+                    />
+                ))}
 
             <div className={styles.sliderContainerButtons}>
-                {/* {images.length > 0 &&
-                    images.map((image, index) => ( */}
-                <a
-                    className={currentImageIndex === 0 ? `${styles.active}` : ''}
-                    key={0}
-                    href={`#${images[0].src}`}
-                    onClick={() => setCurrentImageIndex(0)}
-                />
-                <a
-                    className={currentImageIndex === 1 ? `${styles.active}` : ''}
-                    key={1}
-                    href={`#${images[1].src}`}
-                    onClick={() => setCurrentImageIndex(1)}
-                />{' '}
-                <a
-                    className={currentImageIndex === 2 ? `${styles.active}` : ''}
-                    key={2}
-                    href={`#${images[2].src}`}
-                    onClick={() => setCurrentImageIndex(2)}
-                />
-                {/* ))} */}
+                {images.length > 0 &&
+                    images.map((image, index) => (
+                        <a
+                            className={currentImageIndex === index ? `${styles.active}` : ''}
+                            key={index}
+                            href={`#${images[index].src}`}
+                            onClick={() => setCurrentImageIndex(index)}
+                        />
+                    ))}
             </div>
         </div>
     );
