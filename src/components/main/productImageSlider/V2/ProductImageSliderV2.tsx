@@ -11,8 +11,6 @@ const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
 
     const imageRef: React.MutableRefObject<any | null[]> = useRef([]);
 
-    const containerRef = useRef<HTMLDivElement>(null);
-
     const handleVisibleImg = (entries: any) => {
         entries.forEach((entry: any) => {
             if (entry.isIntersecting) {
@@ -25,9 +23,9 @@ const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
     };
 
     const options = {
-        root: containerRef.current,
-        rootMargin: '-250px'
-        // treshold: 0.5
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
     };
 
     useEffect(() => {
@@ -41,11 +39,7 @@ const ProductImageSliderV2 = ({ images }: ProductSliderProps) => {
     }, []);
 
     return (
-        <div
-            ref={containerRef}
-            className={styles.sliderContainer}
-            aria-label="product-image-slider"
-        >
+        <div className={styles.sliderContainer} aria-label="product-image-slider">
             {images.length > 0 &&
                 images.map((image, index) => (
                     <img
