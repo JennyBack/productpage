@@ -1,17 +1,18 @@
-import React from 'react';
 import { MenuItem } from '../../../types';
 import styles from './TopNavigationBar.module.css';
 import useSelectedMenuItem from '../../../state/useSelectedMenuItem';
 
 type TopNavigationBarProps = {
     menuItems: MenuItem[];
+    label: string;
 };
 
-const TopNavigationBar = ({ menuItems }: TopNavigationBarProps) => {
+const TopNavigationBar = ({ menuItems, label }: TopNavigationBarProps) => {
     let { selectedMenuItem, handleSelectMenuItem } = useSelectedMenuItem();
 
     return (
         <nav aria-label="top-navigation-bar" className={styles.topNavigationBar}>
+            <h2>{label}</h2>
             <ul>
                 {menuItems.length > 0 &&
                     menuItems.map((item, index) => (

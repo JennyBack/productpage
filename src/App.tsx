@@ -23,13 +23,14 @@ function App() {
 
     let isMobile = useCheckMobileScreen();
     let currency = 'kr';
+    let companyName = 'Paper & co';
 
     return (
         <div>
             <Header
                 numberOfCartItems={cartItems.length}
                 onOpenCart={handleOpenCart}
-                label={'candles'}
+                label={companyName}
                 isMobile={isMobile}
                 menuItems={menuItems}
             />

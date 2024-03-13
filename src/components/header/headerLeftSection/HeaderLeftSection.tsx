@@ -1,5 +1,4 @@
 import TopNavigationBar from '../topNavigationBar/TopNavigationBar';
-import styles from './HeaderLeftSection.module.css';
 import headerStyles from '../Header.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import { MenuItem } from '../../../types';
@@ -19,26 +18,19 @@ const HeaderLeftSection = ({
     menuItems
 }: HeaderLeftNavigationProps) => {
     return (
-        <div aria-label="header-left-section" className={styles.headerLeft}>
+        <div aria-label="header-left-section" className={headerStyles.headerLeft}>
             {isMobile ? (
                 <>
                     <button className={headerStyles.iconButton}>
                         <MenuIcon
                             onClick={() => onToggleNavigation(!showNavigation)}
-                            className={styles.icon}
+                            className={headerStyles.icon}
                         />
                     </button>
-                    <button className={headerStyles.logoButton}>
-                        <h2>{label}</h2>
-                    </button>
+                    <h2>{label}</h2>
                 </>
             ) : (
-                <>
-                    <button className={headerStyles.logoButton}>
-                        <h2>{label}</h2>
-                    </button>
-                    <TopNavigationBar menuItems={menuItems} />
-                </>
+                <TopNavigationBar menuItems={menuItems} label={label} />
             )}
         </div>
     );
