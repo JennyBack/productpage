@@ -6,6 +6,7 @@ import HeaderLeftSection from './headerLeftSection/HeaderLeftSection';
 import { MenuItem } from '../../types';
 import NavigationDrawer from './navigationDrawer/NavigationDrawer';
 import HeaderRightSection from './headerRightSection/HeaderRightSection';
+import CartDrawer from './cartDrawer/CartDrawer';
 
 type HeaderProps = {
     numberOfCartItems: number;
@@ -13,9 +14,17 @@ type HeaderProps = {
     label: string;
     isMobile: boolean;
     menuItems: MenuItem[];
+    showCart: boolean;
 };
 
-const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: HeaderProps) => {
+const Header = ({
+    numberOfCartItems,
+    onOpenCart,
+    label,
+    isMobile,
+    menuItems,
+    showCart
+}: HeaderProps) => {
     const [showNavigation, setShowNavigation] = React.useState<boolean>(false);
 
     return (
@@ -35,6 +44,7 @@ const Header = ({ numberOfCartItems, onOpenCart, label, isMobile, menuItems }: H
                 isOpen={isMobile && showNavigation}
                 onClose={() => setShowNavigation(false)}
             />
+            <CartDrawer isOpen={showCart} onClose={onOpenCart} />
         </>
     );
 };

@@ -43,23 +43,8 @@ const Cart = ({ cartItems, currency, numberOfProducts, onRemoveFromCart }: CartP
     let totalItemCost = cartItems.length > 0 && cartItems[0].price * numberOfProducts;
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                top: '10%',
-                left: 0,
-                right: 0,
-                margin: '0 auto',
-                borderRadius: '10px',
-                backgroundColor: 'white',
-                boxShadow: ' 0px 50px 50px 0px rgba(0, 0, 0, 0.10)',
-                zIndex: 100,
-                maxWidth: '350px',
-                minHeight: '250px',
-                padding: '12px'
-            }}
-        >
-            <h4 className={styles.cartHeading}>Cart</h4>
+        <div className={styles.cartWrapper}>
+            <h4>Cart</h4>
             {cartItems.length > 0 ? (
                 cartItems.map((item) => (
                     <div
@@ -103,15 +88,8 @@ const Cart = ({ cartItems, currency, numberOfProducts, onRemoveFromCart }: CartP
                     </div>
                 ))
             ) : (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: 'auto'
-                    }}
-                >
-                    <p className={styles.emptyCartText}>Your cart is empty</p>
+                <div className={styles.cartEmpty}>
+                    <p>Your cart is empty</p>
                 </div>
             )}
             <button style={CheckoutButtonStyle()}>Check out</button>

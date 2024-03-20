@@ -8,6 +8,7 @@ import ProductInfoSection from './components/main/productInfoSection/ProductInfo
 import { menuItems, product } from './mockData';
 import './app.css';
 import ProductImageSliderV2 from './components/main/productImageSlider/V2/ProductImageSliderV2';
+import CartDrawer from './components/header/cartDrawer/CartDrawer';
 
 function App() {
     let {
@@ -29,6 +30,7 @@ function App() {
         <div>
             <Header
                 numberOfCartItems={cartItems.length}
+                showCart={openCart}
                 onOpenCart={handleOpenCart}
                 label={companyName}
                 isMobile={isMobile}
@@ -50,14 +52,6 @@ function App() {
                     handleAddToCart={handleAddToCart}
                     isMobile={isMobile}
                 />
-                {openCart ? (
-                    <Cart
-                        cartItems={cartItems}
-                        currency={currency}
-                        numberOfProducts={numberOfProducts}
-                        onRemoveFromCart={handleRemoveFromCart}
-                    />
-                ) : null}
             </main>
         </div>
     );
