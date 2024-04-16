@@ -4,7 +4,7 @@ import useCart from './state/useCart';
 import ProductInfoSection from './components/main/productInfoSection/ProductInfoSection';
 import { menuItems, product } from './mockData';
 import './app.css';
-import ProductImageSliderV2 from './components/main/productImageSlider/V2/ProductImageSliderV2';
+import ProductImageSlider from './components/main/productImageSlider/ProductImageSlider';
 import HeaderSection from './components/header/HeaderSection';
 
 function App() {
@@ -35,9 +35,9 @@ function App() {
                     menuItems={menuItems}
                 />
             </header>
-            <main className={'main'} style={{ height: '100%' }}>
+            <main className={'main'} style={{ height: '100vh' }}>
                 {isMobile ? (
-                    <ProductImageSliderV2 images={product.images} />
+                    <ProductImageSlider images={product.images} />
                 ) : (
                     <ProductImageGallery images={product.images} />
                 )}

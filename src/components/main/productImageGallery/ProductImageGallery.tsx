@@ -14,6 +14,7 @@ const ProductImageGallery = ({ images }: ProductImageGalleryProps) => {
             setSelectedImageIndex((prevState) => (prevState = index));
         }
     };
+
     return (
         <div aria-label="image-gallery" className={styles.imageGallery}>
             <div className={styles.imageGalleryContainer}>

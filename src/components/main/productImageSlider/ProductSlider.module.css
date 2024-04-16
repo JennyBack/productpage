@@ -1,94 +1,42 @@
 .sliderContainer {
     display: flex;
-    margin: 0;
-    justify-content: center;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.sliderContainer ul {
-    position: relative;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    list-style: none;
-    padding: 0;
-}
-
-.sliderContainer button {
-    position: absolute;
-    top: 45%;
-    cursor: pointer;
-    background-color: var(--lightgrey--);
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    &:focus {
-        background-color: var(--lightgrey--);
-    }
-    border: none;
-    cursor: pointer;
-}
-
-.buttonRight {
-    right: 5%;
-}
-
-.buttonLeft {
-    left: 5%;
-}
-
-.sliderContainer li {
-    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    min-height: 300px;
-    height: auto;
-    width: 100vw;
+    margin: 0;
+    scroll-behavior: smooth;
+    max-height: 32rem;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    width: 100%;
 }
 
 .sliderContainer img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     object-fit: cover;
     overflow: hidden;
-    min-height: 300px;
+    min-height: 32rem;
+    max-height: 32rem;
+    scroll-snap-align: center;
+    margin-bottom: 10px;
 }
 
-.sliderContainer.onLoading {
-    background-color: var(--lightgrey--);
+.sliderContainerButtons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 37%;
+    left: 0.5rem;
 }
 
-.sliderContainer img {
-    opacity: 1;
+.sliderContainerButtons a {
+    border-radius: 50%;
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0.3rem;
+    border: 1px solid black;
+    scroll-behavior: smooth;
 }
 
-@keyframes fadein {
-    0% {
-        opacity: 0.2;
-    }
-    10% {
-        opacity: 0.5;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.sliderContainer img {
-    animation: fadein 3s;
-}
-
-.icon {
-    color: var(--icons--);
+.active {
+    background-color: black;
 }
