@@ -18,7 +18,7 @@ const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
             <button>
                 <CloseIcon onClick={onClose} className={styles.icon} />
             </button>
-        </div>
+        </div >
     );
 };
 

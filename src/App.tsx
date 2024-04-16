@@ -1,14 +1,11 @@
-import Header from './components/header/Header';
-// import ProductImageSlider from './components/main/productImageSlider/ProductImageSlider';
 import useCheckMobileScreen from './hooks/useCheckMobileScreen';
-import Cart from './components/main/cart/Cart';
 import ProductImageGallery from './components/main/productImageGallery/ProductImageGallery';
 import useCart from './state/useCart';
 import ProductInfoSection from './components/main/productInfoSection/ProductInfoSection';
 import { menuItems, product } from './mockData';
 import './app.css';
 import ProductImageSliderV2 from './components/main/productImageSlider/V2/ProductImageSliderV2';
-import CartDrawer from './components/header/cartDrawer/CartDrawer';
+import HeaderSection from './components/header/HeaderSection';
 
 function App() {
     let {
@@ -28,15 +25,17 @@ function App() {
 
     return (
         <div>
-            <Header
-                numberOfCartItems={cartItems.length}
-                showCart={openCart}
-                onOpenCart={handleOpenCart}
-                label={companyName}
-                isMobile={isMobile}
-                menuItems={menuItems}
-            />
-            <main className={'main'}>
+            <header style={{ minHeight: '4rem', height: '100%', width: '100%' }}>
+                <HeaderSection
+                    numberOfCartItems={cartItems.length}
+                    showCart={openCart}
+                    onOpenCart={handleOpenCart}
+                    label={companyName}
+                    isMobile={isMobile}
+                    menuItems={menuItems}
+                />
+            </header>
+            <main className={'main'} style={{ height: '100%' }}>
                 {isMobile ? (
                     <ProductImageSliderV2 images={product.images} />
                 ) : (
@@ -53,6 +52,13 @@ function App() {
                     isMobile={isMobile}
                 />
             </main>
+            <footer style={{ backgroundColor: 'var(--primary--)', width: '100%' }}>
+                <ul style={{ color: 'white', padding: '1rem', listStyle: 'none' }}>
+                    <li>Portfolio site</li>
+                    <li>LinkedIn</li>
+                    <li>GitHub</li>
+                </ul>
+            </footer>
         </div>
     );
 }

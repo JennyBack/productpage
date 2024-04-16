@@ -27,7 +27,7 @@ const CounterStyle = {
 const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) => {
     return {
         border: 'none',
-        padding: 0,
+        padding: '1rem',
         font: 'inherit',
         cursor: 'pointer',
         display: 'flex',
@@ -81,7 +81,8 @@ const ProductCounter = ({
                     width: isMobile ? '100%' : '30%',
                     flexWrap: 'nowrap',
                     margin: isMobile ? '0 0 12px 0' : '5px',
-                    backgroundColor: '#F7F8FD'
+                    backgroundColor: '#F7F8FD',
+                    padding: '0.5rem'
                 }}
             >
                 <button style={IconButtonStyle} onClick={onRemoveProduct}>

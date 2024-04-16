@@ -9,7 +9,8 @@ export type Product = {
     title: string;
     description: string;
     price: number;
-    reducedByPercentage: number | null;
+    oldPrice: number;
+    discountInPercent: number;
 };
 
 export type MenuItem = {

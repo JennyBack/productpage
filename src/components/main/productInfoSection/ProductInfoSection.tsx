@@ -21,8 +21,7 @@ const ProductInfoSectionStyle = (isMobile: boolean) => {
         width: isMobile ? '100%' : '50%',
         height: '100%',
         margin: 0,
-        padding: 0,
-        flexDirecton: 'column'
+        padding: '2rem 0'
     };
 };
 

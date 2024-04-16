@@ -1,12 +1,9 @@
 import * as React from 'react';
 
-import styles from './Header.module.css';
-
-import HeaderLeftSection from './headerLeftSection/HeaderLeftSection';
 import { MenuItem } from '../../types';
 import NavigationDrawer from './navigationDrawer/NavigationDrawer';
-import HeaderRightSection from './headerRightSection/HeaderRightSection';
 import CartDrawer from './cartDrawer/CartDrawer';
+import Header from './header/Header';
 
 type HeaderProps = {
     numberOfCartItems: number;
@@ -17,7 +14,7 @@ type HeaderProps = {
     showCart: boolean;
 };
 
-const Header = ({
+const HeaderSection = ({
     numberOfCartItems,
     onOpenCart,
     label,
@@ -29,16 +26,15 @@ const Header = ({
 
     return (
         <>
-            <header aria-label="header" className={styles.header}>
-                <HeaderLeftSection
-                    isMobile={isMobile}
-                    onToggleNavigation={() => setShowNavigation(!showNavigation)}
-                    label={label}
-                    showNavigation={showNavigation}
-                    menuItems={menuItems}
-                />
-                <HeaderRightSection onOpenCart={onOpenCart} numberOfCartItems={numberOfCartItems} />
-            </header>
+            <Header
+                onOpenCart={onOpenCart}
+                numberOfCartItems={numberOfCartItems}
+                onToggleDrawer={() => setShowNavigation(!showNavigation)}
+                label={label}
+                isMobile={isMobile}
+                menuItems={menuItems}
+            />
+
             <NavigationDrawer
                 menuItems={menuItems}
                 isOpen={isMobile && showNavigation}
@@ -49,4 +45,4 @@ const Header = ({
     );
 };
 
-export default Header;
+export default HeaderSection;

@@ -8,10 +8,18 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product, currency }: ProductInfoProps) => {
     return (
-        <div style={{ margin: '0 20px 0 20px' }}>
-            <h5 className={styles.productMakeText}>{product.make}</h5>
-            <h2 className={styles.productTitle}>{product.title}</h2>
-            <p className={styles.productDescription}>{product.description}</p>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '2rem'
+            }}
+        >
+            <h5 className={`heading-h5-regular ${styles.productMakeText}`}>{product.make}</h5>
+            <h2 className={`heading-h2-regular ${styles.productTitle}`}>{product.title}</h2>
+            <p className={`paragraph-regular ${styles.productDescription}`}>
+                {product.description}
+            </p>
             <div style={{ display: 'flex', alignItems: 'center', margin: 'auto', width: '100%' }}>
                 <div
                     style={{
@@ -21,11 +29,11 @@ const ProductInfo = ({ product, currency }: ProductInfoProps) => {
                         margin: 'auto'
                     }}
                 >
-                    <p className={styles.productPrice}>
+                    <h2 className={`heading-h2-regular ${styles.productPrice}`}>
                         {product.price}
                         {currency}
-                    </p>
-                    {product.reducedByPercentage ? (
+                    </h2>
+                    {product.discountInPercent ? (
                         <div
                             style={{
                                 display: 'flex',
@@ -47,14 +55,14 @@ const ProductInfo = ({ product, currency }: ProductInfoProps) => {
                                     height: '27px'
                                 }}
                             >
-                                <p className={styles.productMakeText}>
-                                    {product.reducedByPercentage}%
-                                </p>
+                                <h5 className={'heading-h5-regular'}>
+                                    {product.discountInPercent}%
+                                </h5>
                             </div>
                         </div>
                     ) : null}
                 </div>
-                {product.reducedByPercentage ? (
+                {product.oldPrice ? (
                     <div
                         style={{
                             display: 'flex',
@@ -64,7 +72,10 @@ const ProductInfo = ({ product, currency }: ProductInfoProps) => {
                         }}
                     >
                         <div>
-                            <p className={styles.productOldPrice}>2500.00</p>
+                            <p className={styles.productOldPrice}>
+                                {product.oldPrice}
+                                {currency}
+                            </p>
                         </div>
                     </div>
                 ) : null}
