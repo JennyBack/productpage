@@ -27,15 +27,18 @@ function App() {
         <div>
             <header style={{ minHeight: '4rem', height: '100%', width: '100%' }}>
                 <HeaderSection
-                    numberOfCartItems={cartItems.length}
+                    numberOfCartItems={numberOfProducts}
                     showCart={openCart}
                     onOpenCart={handleOpenCart}
                     label={companyName}
                     isMobile={isMobile}
                     menuItems={menuItems}
+                    cartItems={cartItems}
+                    currency={currency}
+                    onRemoveFromCart={(item) => handleRemoveFromCart(item)}
                 />
             </header>
-            <main className={'main'} style={{ height: '100vh' }}>
+            <main className={'main'} style={!isMobile ? { height: '100vh' } : { height: '' }}>
                 {isMobile ? (
                     <ProductImageSlider images={product.images} />
                 ) : (

@@ -1,6 +1,7 @@
-.navigationDrawer {
-    position: fixed;
+.cartDrawer {
     display: flex;
+    flex-direction: column;
+    position: fixed;
     height: 100%;
     background: white;
     top: 0;
@@ -11,17 +12,17 @@
     transition: transform 0.5s ease-out;
 }
 
-.navigationDrawer.open {
+.cartDrawer.open {
     transform: translateX(10%);
     box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
 }
 
-.navigationDrawer ul {
+.cartDrawer ul {
     list-style: none;
     padding: 1em;
 }
 
-.navigationDrawer li {
+.cartDrawer li {
     text-align: start;
     font-family: Kumbh sans;
     font-size: 17px;
@@ -34,7 +35,7 @@
     color: var(--primary--);
 }
 
-.navigationDrawer button {
+.cartDrawer button {
     background-color: transparent;
     border: none;
     padding: 1.8rem;
@@ -43,7 +44,7 @@
     cursor: pointer;
     height: 24px;
     width: 24px;
-    margin-left: 75%;
+    /* margin-left: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;

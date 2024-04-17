@@ -17,17 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin: auto;
-}
-
-.cartEmpty p {
-    color: var(--Grayish-blue, #68707d);
-    font-family: Kumbh Sans;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 11px;
-    letter-spacing: 0.6px;
 }
 
 .cartWrapper h4 {

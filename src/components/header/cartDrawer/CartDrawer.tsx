@@ -1,24 +1,64 @@
 import useSelectedMenuItem from '../../../state/useSelectedMenuItem';
-import { MenuItem } from '../../../types';
+import { MenuItem, Product } from '../../../types';
+import { IconButton } from '../../buttons/ButtonComponents';
+import CartContent from '../../main/cart/Cart';
 import styles from './CartDrawer.module.css';
 import CloseIcon from '@mui/icons-material/Close';
 
 type CartDrawerProps = {
     isOpen: boolean;
     onClose: () => void;
+    isMobile: boolean;
+    cartItems: [];
+    currency: string;
+    numberOfProducts: number;
+    onRemoveFromCart: (item: any) => void;
 };
 
-const CartDrawer = ({ isOpen, onClose }: CartDrawerProps) => {
+const CartHeader = ({ onClose }: any) => {
     return (
         <div
-            className={
-                isOpen ? `${styles.navigationDrawer} ${styles.open}` : `${styles.navigationDrawer}`
-            }
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingRight: '10%'
+            }}
         >
-            <button>
-                <CloseIcon onClick={onClose} className={styles.icon} />
-            </button>
-        </div >
+            <h2
+                className={'heading-h3-regular'}
+                style={{ marginRight: 'auto', paddingLeft: '1rem' }}
+            >
+                Cart
+            </h2>
+            <div style={{ marginLeft: 'auto' }}>
+                <IconButton>
+                    <CloseIcon onClick={onClose} className={styles.icon} />
+                </IconButton>
+            </div>
+        </div>
+    );
+};
+
+const CartDrawer = ({
+    isOpen,
+    onClose,
+    isMobile,
+    cartItems,
+    currency,
+    numberOfProducts,
+    onRemoveFromCart
+}: CartDrawerProps) => {
+    return (
+        <div className={isOpen ? `${styles.cartDrawer} ${styles.open}` : `${styles.cartDrawer}`}>
+            <CartHeader onClose={onClose} />
+            <CartContent
+                cartItems={cartItems}
+                currency={currency}
+                numberOfProducts={numberOfProducts}
+                onRemoveFromCart={onRemoveFromCart}
+                onClose={onClose}
+            />
+        </div>
     );
 };
 

@@ -12,6 +12,9 @@ type HeaderProps = {
     isMobile: boolean;
     menuItems: MenuItem[];
     showCart: boolean;
+    currency: string;
+    onRemoveFromCart: (item: any) => void;
+    cartItems: any;
 };
 
 const HeaderSection = ({
@@ -20,7 +23,10 @@ const HeaderSection = ({
     label,
     isMobile,
     menuItems,
-    showCart
+    showCart,
+    onRemoveFromCart,
+    currency,
+    cartItems
 }: HeaderProps) => {
     const [showNavigation, setShowNavigation] = React.useState<boolean>(false);
 
@@ -40,7 +46,15 @@ const HeaderSection = ({
                 isOpen={isMobile && showNavigation}
                 onClose={() => setShowNavigation(false)}
             />
-            <CartDrawer isOpen={showCart} onClose={onOpenCart} />
+            <CartDrawer
+                isOpen={showCart}
+                onClose={onOpenCart}
+                isMobile={isMobile}
+                onRemoveFromCart={(item) => onRemoveFromCart(item)}
+                currency={currency}
+                cartItems={cartItems}
+                numberOfProducts={numberOfCartItems}
+            />
         </>
     );
 };

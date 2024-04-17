@@ -1,10 +1,25 @@
 import styles from './ButtonComponents.module.css';
 
-export const IconButton = ({ children }: any) => {
-    return <button className={styles.iconButton}>{children}</button>;
+type IconButtonProps = {
+    children: any;
+    onClick?: () => void;
 };
 
-export const BadgeButton = ({ children, onClick, numberOfItems }: any) => {
+type BadgeButtonProps = {
+    children: any;
+    onClick: () => void;
+    numberOfItems: number;
+};
+
+export const IconButton = ({ children, onClick }: IconButtonProps) => {
+    return (
+        <button className={styles.iconButton} onClick={onClick}>
+            {children}
+        </button>
+    );
+};
+
+export const BadgeButton = ({ children, onClick, numberOfItems }: BadgeButtonProps) => {
     return (
         <button className={styles.iconButton}>
             <div style={{ position: 'relative' }} onClick={onClick}>
