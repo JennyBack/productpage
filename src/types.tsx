@@ -11,6 +11,7 @@ export type Product = {
     price: number;
     oldPrice: number;
     discountInPercent: number;
+    quantity: number;
 };
 
 export type MenuItem = {

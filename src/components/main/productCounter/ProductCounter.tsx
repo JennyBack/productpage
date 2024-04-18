@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CartContext } from '../../../App';
 
 const IconButtonStyle = {
     backgroundColor: 'transparent',
@@ -43,25 +44,25 @@ const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) =
 
 type ProductCounterProps = {
     productId: number;
-    numberOfProducts: number;
     onAddProduct: () => void;
     onRemoveProduct: () => void;
     onAddToCart: (productId: number) => void;
     label: string;
-    numberOfItemsInCart: number;
     isMobile: boolean;
 };
 
 const ProductCounter = ({
     productId,
-    numberOfProducts,
     onAddProduct,
     onRemoveProduct,
     onAddToCart,
     label,
-    numberOfItemsInCart,
     isMobile
 }: ProductCounterProps) => {
+    const { cartItems, productQuantity } = React.useContext(CartContext);
+
+    let numberOfItemsInCart = cartItems.length;
+
     return (
         <div
             style={{
@@ -88,7 +89,7 @@ const ProductCounter = ({
                 <button style={IconButtonStyle} onClick={onRemoveProduct}>
                     <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
-                <p style={CounterStyle}>{numberOfProducts}</p>
+                <p style={CounterStyle}>{productQuantity}</p>
                 <button style={IconButtonStyle} onClick={onAddProduct}>
                     <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
@@ -98,7 +99,7 @@ const ProductCounter = ({
                 onClick={() => {
                     onAddToCart(productId);
                 }}
-                disabled={numberOfItemsInCart > 0}
+                // disabled={numberOfItemsInCart > 0}
             >
                 <ShoppingCartIcon sx={{ color: 'white', marginRight: '12px' }} />
                 <p

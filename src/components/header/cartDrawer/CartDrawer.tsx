@@ -1,5 +1,3 @@
-import useSelectedMenuItem from '../../../state/useSelectedMenuItem';
-import { MenuItem, Product } from '../../../types';
 import { IconButton } from '../../buttons/ButtonComponents';
 import CartContent from '../../main/cart/Cart';
 import styles from './CartDrawer.module.css';
@@ -9,9 +7,7 @@ type CartDrawerProps = {
     isOpen: boolean;
     onClose: () => void;
     isMobile: boolean;
-    cartItems: [];
     currency: string;
-    numberOfProducts: number;
     onRemoveFromCart: (item: any) => void;
 };
 
@@ -39,22 +35,12 @@ const CartHeader = ({ onClose }: any) => {
     );
 };
 
-const CartDrawer = ({
-    isOpen,
-    onClose,
-    isMobile,
-    cartItems,
-    currency,
-    numberOfProducts,
-    onRemoveFromCart
-}: CartDrawerProps) => {
+const CartDrawer = ({ isOpen, onClose, isMobile, currency, onRemoveFromCart }: CartDrawerProps) => {
     return (
         <div className={isOpen ? `${styles.cartDrawer} ${styles.open}` : `${styles.cartDrawer}`}>
             <CartHeader onClose={onClose} />
             <CartContent
-                cartItems={cartItems}
                 currency={currency}
-                numberOfProducts={numberOfProducts}
                 onRemoveFromCart={onRemoveFromCart}
                 onClose={onClose}
             />

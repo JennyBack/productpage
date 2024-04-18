@@ -6,11 +6,9 @@ type ProductInfoProps = {
     product: Product;
     currency: string;
     isMobile: boolean;
-    numberOfProducts: number;
     handleAddProduct: () => void;
     handleRemoveProduct: () => void;
     handleAddToCart: (productId: number) => void;
-    cartItems: Product[];
 };
 
 const ProductInfoSectionStyle = (isMobile: boolean) => {
@@ -29,11 +27,9 @@ const ProductInfoSection = ({
     product,
     currency,
     isMobile,
-    numberOfProducts,
     handleAddProduct,
     handleRemoveProduct,
-    handleAddToCart,
-    cartItems
+    handleAddToCart
 }: ProductInfoProps) => {
     return (
         <div style={ProductInfoSectionStyle(isMobile)}>
@@ -51,12 +47,10 @@ const ProductInfoSection = ({
                 <ProductInfo product={product} currency={currency} />
                 <ProductCounter
                     productId={product.id}
-                    numberOfProducts={numberOfProducts}
                     onAddProduct={handleAddProduct}
                     onRemoveProduct={handleRemoveProduct}
                     onAddToCart={handleAddToCart}
                     label={'Add to cart'}
-                    numberOfItemsInCart={cartItems.length}
                     isMobile={isMobile}
                 />
             </div>

@@ -15,7 +15,8 @@ export const product: Product = {
         'These carefully handmade scented candles are perfect on a fall evening journaling. Let the room fill with the smell of warm spices that warms the soul. Comes in 2 pack - autumn mist & pumpkin spice.',
     price: 200.0,
     oldPrice: 400.0,
-    discountInPercent: 50
+    discountInPercent: 50,
+    quantity: 1
 };
 
 export const menuItems: MenuItem[] = [

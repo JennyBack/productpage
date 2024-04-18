@@ -1,161 +1,23 @@
+import React from 'react';
 import { Product } from '../../../types';
-import { IconButton } from '../../buttons/ButtonComponents';
-import styles from './Cart.module.css';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import EmptyCart from './EmptyCart';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+
+import CartListItem from './ProductList';
+import { CartContext } from '../../../App';
 
 type CartProps = {
-    cartItems: Product[];
     currency: string;
-    numberOfProducts: number;
     onRemoveFromCart: (item: Product) => void;
     onClose: () => void;
 };
 
-const CheckoutButtonStyle = (disableCartButton?: boolean) => {
-    return {
-        border: 'none',
-        padding: '17px 77px',
-        font: 'inherit',
-        cursor: 'pointer',
-        display: 'flex',
+const Cart = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
+    const { cartItems, productQuantity } = React.useContext(CartContext);
 
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '12px auto',
-        width: '100%',
-        borderRadius: '10px',
-        backgroundColor: !disableCartButton ? '#77AA9E' : 'lightgray',
-        boxShadow: '0px 8px 10px 0px #FFEDE0',
-        color: 'white'
-    };
-};
-
-const IconButtonStyle = {
-    backgroundColor: 'transparent',
-    border: 'none',
-    margin: '0.3em',
-    padding: 0,
-    font: 'inherit',
-    borderRadius: 0,
-    height: '24px',
-    width: '24px',
-    cursor: 'pointer'
-};
-
-const EmptyCart = ({ onClose }: any) => {
-    return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: '10rem 1rem'
-            }}
-        >
-            <ShoppingCartIcon style={{ color: 'var(--icons--)' }} />
-            <p style={{ textAlign: 'center' }} className={'paragraph-regular'}>
-                Your cart is empty. <br /> Added items will appear here.
-            </p>
-            <button onClick={onClose} style={CheckoutButtonStyle()}>
-                <h5 style={{ color: 'white' }} className={'heading-h5-regular'}>
-                    Close cart
-                </h5>
-            </button>
-        </div>
-    );
-};
-
-type CartListItemProps = {
-    item: any;
-    index: number;
-    currency: string;
-    numberOfProducts: number;
-    totalItemCost: number;
-    onRemoveFromCart: (item: any) => void;
-};
-
-const CartListItem = ({
-    item,
-    index,
-    currency,
-    numberOfProducts,
-    totalItemCost,
-    onRemoveFromCart
-}: CartListItemProps) => {
-    const handleRemoveItem = () => {
-        onRemoveFromCart(item);
-    };
-    return (
-        <li
-            key={item}
-            style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 3fr 1fr',
-                padding: 0,
-                margin: 0
-            }}
-        >
-            <div
-                style={{
-                    placeSelf: 'start',
-
-                    padding: '0.5rem'
-                }}
-            >
-                <img
-                    style={{
-                        height: '100px',
-                        width: 'auto',
-                        maxWidth: '70px',
-                        objectFit: 'cover',
-                        overflow: 'hidden'
-                    }}
-                    src={item.images[0].src}
-                />
-            </div>
-            <div
-                style={{
-                    justifySelf: 'start',
-                    padding: '0.5rem'
-                }}
-            >
-                <h3
-                    style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}
-                    className={'heading-h3-regular'}
-                >
-                    {item.title}
-                </h3>
-                <p className={'paragraph-regular'}>
-                    {item.price}
-                    {currency}
-                    {numberOfProducts > 1 ? (
-                        <>
-                            X {numberOfProducts} {totalItemCost}
-                            {currency}
-                        </>
-                    ) : null}
-                </p>
-            </div>
-            <div
-                style={{
-                    placeSelf: 'end'
-                }}
-            >
-                <IconButton onClick={handleRemoveItem}>
-                    <DeleteOutlineIcon className={styles.icon} />
-                </IconButton>
-            </div>
-        </li>
-    );
-};
-
-const Cart = ({ cartItems, currency, numberOfProducts, onRemoveFromCart, onClose }: CartProps) => {
     let totalItemCost =
-        cartItems && cartItems.length > 0 ? cartItems[0].price * numberOfProducts : 0;
-
-    console.log(numberOfProducts);
+        cartItems && cartItems.length > 0 ? cartItems[0].price * productQuantity : 0;
 
     return (
         <div
@@ -181,14 +43,38 @@ const Cart = ({ cartItems, currency, numberOfProducts, onRemoveFromCart, onClose
                                 item={item}
                                 index={index}
                                 currency={currency}
-                                numberOfProducts={numberOfProducts}
+                                numberOfProducts={item.quantity}
                                 totalItemCost={totalItemCost}
                                 onRemoveFromCart={(item) => onRemoveFromCart(item)}
                             />
                         ))}
                     </ul>
-                    <div>Order-details</div>
-                    <button>Checkout</button>
+                    <div style={{ backgroundColor: 'lightblue' }}>
+                        Quantity:
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+
+                                flexWrap: 'nowrap',
+
+                                backgroundColor: '#F7F8FD',
+                                padding: '0.5rem'
+                            }}
+                        >
+                            <button>
+                                <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
+                            </button>
+                            <p>{productQuantity}</p>
+                            <button>
+                                <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
+                            </button>
+                        </div>
+                        Discounts:
+                        <div>Add coupon code here:</div>
+                    </div>
+                    <button style={{ backgroundColor: 'lightgrey' }}>Checkout</button>
                     <div>Payment Methods</div>
                 </div>
             ) : (

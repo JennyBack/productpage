@@ -1,29 +1,23 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './Header.module.css';
-
+import React from 'react';
 import { MenuItem } from '../../../types';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DesktopTopBar from './DesktopTopBar';
 import { BadgeButton, IconButton } from '../../buttons/ButtonComponents';
+import { CartContext } from '../../../App';
 
 type HeaderProps = {
     onOpenCart: () => void;
-    numberOfCartItems: number;
     onToggleDrawer: () => void;
     isMobile: boolean;
     label: string;
     menuItems: MenuItem[];
 };
 
-const Header = ({
-    onOpenCart,
-    numberOfCartItems,
-    onToggleDrawer,
-    isMobile,
-    label,
-    menuItems
-}: HeaderProps) => {
+const Header = ({ onOpenCart, onToggleDrawer, isMobile, label, menuItems }: HeaderProps) => {
+    const { cartItems } = React.useContext(CartContext);
     return (
         <div className={isMobile ? `${styles.Header} ${styles.sticky}` : styles.Header}>
             {isMobile ? (
@@ -43,7 +37,7 @@ const Header = ({
                 <IconButton>
                     <AccountCircleIcon className={styles.icon} style={{ marginRight: '5px' }} />
                 </IconButton>
-                <BadgeButton onClick={onOpenCart} numberOfItems={numberOfCartItems}>
+                <BadgeButton onClick={onOpenCart} numberOfItems={cartItems.length}>
                     <ShoppingCartIcon className={styles.icon} />
                 </BadgeButton>
             </div>
