@@ -1,6 +1,10 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { IconButton } from '../../buttons/ButtonComponents';
 import styles from './Cart.module.css';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { CartContext } from '../../../App';
+import React from 'react';
 
 type CartListItemProps = {
     item: any;
@@ -11,14 +15,17 @@ type CartListItemProps = {
     onRemoveFromCart: (item: any) => void;
 };
 
-const CartListItem = ({
-    item,
-    index,
-    currency,
-    numberOfProducts,
-    totalItemCost,
-    onRemoveFromCart
-}: CartListItemProps) => {
+const CartListItem = ({ item, currency, onRemoveFromCart }: CartListItemProps) => {
+    const cart = React.useContext(CartContext);
+
+    let onChangeProductQuantity = cart && cart.onChangeProductQuantity;
+
+    const handleChangeQuantity = (add: boolean) => {
+        if (onChangeProductQuantity != null) {
+            onChangeProductQuantity(add, item.id);
+        }
+    };
+
     const handleRemoveItem = () => {
         onRemoveFromCart(item);
     };
@@ -76,6 +83,27 @@ const CartListItem = ({
                 <IconButton onClick={handleRemoveItem}>
                     <DeleteOutlineIcon className={styles.icon} />
                 </IconButton>
+            </div>
+            Quantity:
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+
+                    flexWrap: 'nowrap',
+
+                    backgroundColor: '#F7F8FD',
+                    padding: '0.5rem'
+                }}
+            >
+                <button onClick={() => handleChangeQuantity(false)}>
+                    <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
+                </button>
+                <p>{item.quantity}</p>
+                <button onClick={() => handleChangeQuantity(true)}>
+                    <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
+                </button>
             </div>
         </li>
     );

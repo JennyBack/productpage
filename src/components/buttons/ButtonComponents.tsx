@@ -8,7 +8,7 @@ type IconButtonProps = {
 type BadgeButtonProps = {
     children: any;
     onClick: () => void;
-    numberOfItems: number;
+    numberOfItems: number | null;
 };
 
 export const IconButton = ({ children, onClick }: IconButtonProps) => {

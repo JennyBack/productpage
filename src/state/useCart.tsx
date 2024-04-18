@@ -14,12 +14,28 @@ const useCart = ({ product }: Props) => {
         setProductQuantity(1);
     };
 
-    const handleAddProduct = () => {
-        setProductQuantity((prevState) => prevState + 1);
-    };
+    const handleChangeProductQuantity = (add: boolean, productId?: number) => {
+        if (productId != undefined) {
+            if (add) {
+                let isProduct = (el: Product) => el.id === productId;
+                let index = cartItems.findIndex(isProduct);
+                let newArray = cartItems;
+                newArray[index].quantity = newArray[index].quantity + 1;
 
-    const handleRemoveProduct = () => {
-        if (productQuantity != 1) {
+                setCartItems([...newArray]);
+            }
+            if (!add) {
+                let isProduct = (el: Product) => el.id === productId;
+                let index = cartItems.findIndex(isProduct);
+                let newArray = cartItems;
+                newArray[index].quantity = newArray[index].quantity - 1;
+                setCartItems([...newArray]);
+            }
+        }
+        if (add && productId === undefined) {
+            setProductQuantity((prevState) => prevState + 1);
+        }
+        if (!add && productQuantity != 1 && productId === undefined) {
             setProductQuantity((prevState) => prevState - 1);
         }
     };
@@ -44,11 +60,10 @@ const useCart = ({ product }: Props) => {
     };
 
     return {
-        handleAddProduct,
-        handleRemoveProduct,
         handleAddToCart,
         handleRemoveFromCart,
         handleOpenCart,
+        handleChangeProductQuantity,
         productQuantity,
         openCart,
         cartItems

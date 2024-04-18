@@ -9,20 +9,20 @@ import HeaderSection from './components/header/HeaderSection';
 import { createContext } from 'react';
 import { Product } from './types';
 
-type CartContextType = {
+export type CartContextType = {
     productQuantity: number;
     cartItems: Product[];
+    onChangeProductQuantity: (add: boolean, productId?: number) => void;
 };
 
-export const CartContext = createContext<CartContextType>({ productQuantity: 0, cartItems: [] });
+export const CartContext = createContext<CartContextType | null>(null);
 
 function App() {
     let {
-        handleAddProduct,
-        handleRemoveProduct,
         handleAddToCart,
         handleRemoveFromCart,
         handleOpenCart,
+        handleChangeProductQuantity,
         productQuantity,
         openCart,
         cartItems
@@ -34,7 +34,13 @@ function App() {
 
     return (
         <div>
-            <CartContext.Provider value={{ productQuantity, cartItems }}>
+            <CartContext.Provider
+                value={{
+                    productQuantity,
+                    cartItems,
+                    onChangeProductQuantity: handleChangeProductQuantity
+                }}
+            >
                 <header style={{ minHeight: '4rem', height: '100%', width: '100%' }}>
                     <HeaderSection
                         showCart={openCart}
@@ -55,8 +61,6 @@ function App() {
                     <ProductInfoSection
                         currency={currency}
                         product={product}
-                        handleAddProduct={handleAddProduct}
-                        handleRemoveProduct={handleRemoveProduct}
                         handleAddToCart={handleAddToCart}
                         isMobile={isMobile}
                     />

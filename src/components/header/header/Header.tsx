@@ -17,7 +17,9 @@ type HeaderProps = {
 };
 
 const Header = ({ onOpenCart, onToggleDrawer, isMobile, label, menuItems }: HeaderProps) => {
-    const { cartItems } = React.useContext(CartContext);
+    const cart = React.useContext(CartContext);
+    let cartItems = cart && cart.cartItems;
+    let numberOfItems = cart && cart.cartItems.length;
     return (
         <div className={isMobile ? `${styles.Header} ${styles.sticky}` : styles.Header}>
             {isMobile ? (
@@ -37,7 +39,7 @@ const Header = ({ onOpenCart, onToggleDrawer, isMobile, label, menuItems }: Head
                 <IconButton>
                     <AccountCircleIcon className={styles.icon} style={{ marginRight: '5px' }} />
                 </IconButton>
-                <BadgeButton onClick={onOpenCart} numberOfItems={cartItems.length}>
+                <BadgeButton onClick={onOpenCart} numberOfItems={numberOfItems && numberOfItems}>
                     <ShoppingCartIcon className={styles.icon} />
                 </BadgeButton>
             </div>

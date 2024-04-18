@@ -1,8 +1,6 @@
 import React from 'react';
 import { Product } from '../../../types';
 import EmptyCart from './EmptyCart';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 
 import CartListItem from './ProductList';
 import { CartContext } from '../../../App';
@@ -14,10 +12,15 @@ type CartProps = {
 };
 
 const Cart = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
-    const { cartItems, productQuantity } = React.useContext(CartContext);
+    const cart = React.useContext(CartContext);
+
+    let cartItems = cart && cart.cartItems;
+    let productQuantity = cart && cart.productQuantity;
 
     let totalItemCost =
-        cartItems && cartItems.length > 0 ? cartItems[0].price * productQuantity : 0;
+        cartItems && cartItems.length > 0 && productQuantity != null
+            ? cartItems[0].price * productQuantity
+            : 0;
 
     return (
         <div
@@ -29,7 +32,7 @@ const Cart = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
                 width: '100%'
             }}
         >
-            {cartItems.length > 0 ? (
+            {cartItems != null && cartItems.length > 0 ? (
                 <div
                     style={{
                         display: 'flex',
@@ -39,7 +42,7 @@ const Cart = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
                     <ul style={{ display: 'grid', gridTemplateRows: '1fr' }}>
                         {cartItems.map((item, index) => (
                             <CartListItem
-                                key={item.title}
+                                key={item.quantity.toString()}
                                 item={item}
                                 index={index}
                                 currency={currency}
@@ -50,27 +53,6 @@ const Cart = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
                         ))}
                     </ul>
                     <div style={{ backgroundColor: 'lightblue' }}>
-                        Quantity:
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-
-                                flexWrap: 'nowrap',
-
-                                backgroundColor: '#F7F8FD',
-                                padding: '0.5rem'
-                            }}
-                        >
-                            <button>
-                                <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
-                            </button>
-                            <p>{productQuantity}</p>
-                            <button>
-                                <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
-                            </button>
-                        </div>
                         Discounts:
                         <div>Add coupon code here:</div>
                     </div>

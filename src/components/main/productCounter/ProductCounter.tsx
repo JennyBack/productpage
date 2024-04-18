@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { CartContext } from '../../../App';
+import { CartContext, CartContextType } from '../../../App';
 
 const IconButtonStyle = {
     backgroundColor: 'transparent',
@@ -44,24 +44,23 @@ const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) =
 
 type ProductCounterProps = {
     productId: number;
-    onAddProduct: () => void;
-    onRemoveProduct: () => void;
     onAddToCart: (productId: number) => void;
     label: string;
     isMobile: boolean;
 };
 
-const ProductCounter = ({
-    productId,
-    onAddProduct,
-    onRemoveProduct,
-    onAddToCart,
-    label,
-    isMobile
-}: ProductCounterProps) => {
-    const { cartItems, productQuantity } = React.useContext(CartContext);
+const ProductCounter = ({ productId, onAddToCart, label, isMobile }: ProductCounterProps) => {
+    const cart = React.useContext<CartContextType | null>(CartContext);
 
-    let numberOfItemsInCart = cartItems.length;
+    let numberOfItemsInCart = cart && cart.cartItems.length;
+    let productQuantity = cart && cart.productQuantity;
+    let onChangeProductQuantity = cart && cart.onChangeProductQuantity;
+
+    const handleChangeQuantity = (add: boolean) => {
+        if (onChangeProductQuantity != null) {
+            onChangeProductQuantity(add);
+        }
+    };
 
     return (
         <div
@@ -86,20 +85,22 @@ const ProductCounter = ({
                     padding: '0.5rem'
                 }}
             >
-                <button style={IconButtonStyle} onClick={onRemoveProduct}>
+                <button style={IconButtonStyle} onClick={() => handleChangeQuantity(false)}>
                     <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
                 <p style={CounterStyle}>{productQuantity}</p>
-                <button style={IconButtonStyle} onClick={onAddProduct}>
+                <button style={IconButtonStyle} onClick={() => handleChangeQuantity(true)}>
                     <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
             </div>
             <button
-                style={AddToCartButtonStyle(numberOfItemsInCart > 0, isMobile)}
+                style={AddToCartButtonStyle(
+                    numberOfItemsInCart !== null && numberOfItemsInCart > 0,
+                    isMobile
+                )}
                 onClick={() => {
                     onAddToCart(productId);
                 }}
-                // disabled={numberOfItemsInCart > 0}
             >
                 <ShoppingCartIcon sx={{ color: 'white', marginRight: '12px' }} />
                 <p
@@ -112,7 +113,9 @@ const ProductCounter = ({
                         lineHeight: 'normal'
                     }}
                 >
-                    {label}
+                    {numberOfItemsInCart != null && numberOfItemsInCart > 0
+                        ? 'Item added'
+                        : `${label}`}
                 </p>
             </button>
         </div>
