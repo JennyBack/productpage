@@ -39,12 +39,9 @@ const CartContent = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
                     <ul>
                         {cartItems.map((item, index) => (
                             <CartListItem
-                                key={item.quantity.toString()}
+                                key={index}
                                 item={item}
-                                index={index}
                                 currency={currency}
-                                numberOfProducts={item.quantity}
-                                totalItemCost={totalItemCost}
                                 onRemoveFromCart={(item) => onRemoveFromCart(item)}
                             />
                         ))}
