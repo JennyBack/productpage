@@ -9,10 +9,7 @@ import { Product } from '../../../../../types';
 
 type CartListItemProps = {
     item: Product;
-    index: number;
     currency: string;
-    numberOfProducts: number;
-    totalItemCost: number;
     onRemoveFromCart: (item: any) => void;
 };
 
@@ -57,30 +54,29 @@ const CartListItem = ({ item, currency, onRemoveFromCart }: CartListItemProps) =
     const handleRemoveItem = () => {
         onRemoveFromCart(item);
     };
+
     return (
-        item && (
-            <li aria-label="cart-list-item" key={item.title} className={styles.cartListItem}>
-                <div className={styles.imgContainer}>
-                    <img src={item.images[0].src} alt={'product-in-cart'} />
-                </div>
-                <div className={styles.productDetailsContainer}>
-                    <h3 className={'heading-h3-regular'}>{item.title}</h3>
-                    <p className={'paragraph-regular'}>
-                        Quantity:{item.quantity}
-                        <br /> Price: {item.price * item.quantity}
-                        {currency}
-                    </p>
-                </div>
-                <div className={styles.deleteButtonContainer}>
-                    <IconButton onClick={handleRemoveItem}>
-                        <DeleteOutlineIcon style={{ color: 'var(--lightgrey--)' }} />
-                    </IconButton>
-                </div>
-                <div className={styles.quantityPickerContainer}>
-                    <QuantityPicker item={item} />
-                </div>
-            </li>
-        )
+        <li aria-label="cart-list-item" key={item.title} className={styles.cartListItem}>
+            <div className={styles.imgContainer}>
+                <img src={item.images[0].src} alt={'product-in-cart'} />
+            </div>
+            <div className={styles.productDetailsContainer}>
+                <h3 className={'heading-h3-regular'}>{item.title}</h3>
+                <p className={'paragraph-regular'}>
+                    Quantity:{item.quantity}
+                    <br /> Price: {item.price * item.quantity}
+                    {currency}
+                </p>
+            </div>
+            <div className={styles.deleteButtonContainer}>
+                <IconButton onClick={handleRemoveItem}>
+                    <DeleteOutlineIcon style={{ color: 'var(--lightgrey--)' }} />
+                </IconButton>
+            </div>
+            <div className={styles.quantityPickerContainer}>
+                <QuantityPicker item={item} />
+            </div>
+        </li>
     );
 };
 
