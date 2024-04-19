@@ -6,6 +6,7 @@
     width: 65%;
     height: 100%;
     padding: 2rem 0 2rem 4rem;
+    max-width: 50%;
 }
 
 .imageGalleryContainer {

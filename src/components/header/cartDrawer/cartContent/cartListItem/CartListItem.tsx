@@ -45,7 +45,7 @@ const QuantityPicker = ({ item }: QuantityPickerProps) => {
             <button onClick={() => handleChangeQuantity(false)}>
                 <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
             </button>
-            <p>{item.quantity}</p>
+            <p className={'paragraph-regular'}>{item.quantity}</p>
             <button onClick={() => handleChangeQuantity(true)}>
                 <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
             </button>
@@ -73,7 +73,7 @@ const CartListItem = ({ item, currency, onRemoveFromCart }: CartListItemProps) =
                 </div>
                 <div className={styles.deleteButtonContainer}>
                     <IconButton onClick={handleRemoveItem}>
-                        <DeleteOutlineIcon className={styles.icon} />
+                        <DeleteOutlineIcon style={{ color: 'var(--lightgrey--)' }} />
                     </IconButton>
                 </div>
                 <div className={styles.quantityPickerContainer}>

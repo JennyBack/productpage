@@ -78,11 +78,11 @@ const ProductCounter = ({ productId, onAddToCart, label, isMobile }: ProductCoun
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    width: isMobile ? '100%' : '30%',
+                    width: isMobile ? '100%' : '50%',
                     flexWrap: 'nowrap',
-                    margin: isMobile ? '0 0 12px 0' : '5px',
+                    margin: isMobile ? '0 0 12px 0' : '10px',
                     backgroundColor: '#F7F8FD',
-                    padding: '0.5rem'
+                    padding: '1rem'
                 }}
             >
                 <button style={IconButtonStyle} onClick={() => handleChangeQuantity(false)}>

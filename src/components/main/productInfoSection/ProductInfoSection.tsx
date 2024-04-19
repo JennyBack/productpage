@@ -6,8 +6,6 @@ type ProductInfoProps = {
     product: Product;
     currency: string;
     isMobile: boolean;
-    // handleAddProduct: () => void;
-    // handleRemoveProduct: () => void;
     handleAddToCart: (productId: number) => void;
 };
 
@@ -19,18 +17,11 @@ const ProductInfoSectionStyle = (isMobile: boolean) => {
         width: isMobile ? '100%' : '50%',
         height: '100%',
         margin: 0,
-        padding: '2rem 0'
+        padding: !isMobile ? '3rem 0' : '2rem 0'
     };
 };
 
-const ProductInfoSection = ({
-    product,
-    currency,
-    isMobile,
-    // handleAddProduct,
-    // handleRemoveProduct,
-    handleAddToCart
-}: ProductInfoProps) => {
+const ProductInfoSection = ({ product, currency, isMobile, handleAddToCart }: ProductInfoProps) => {
     return (
         <div style={ProductInfoSectionStyle(isMobile)}>
             <div
@@ -40,7 +31,7 @@ const ProductInfoSection = ({
                     alignItems: 'center',
                     padding: isMobile ? '0.5em' : '3em',
                     overflow: 'hidden',
-                    maxWidth: '600px',
+                    maxWidth: '50%',
                     flexDirection: 'column'
                 }}
             >

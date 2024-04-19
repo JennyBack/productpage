@@ -7,6 +7,7 @@ import { CartContext } from '../../../../App';
 import CartSummary from './cartSummary/CartSummary';
 import DiscountInputField from './discountInputField/DiscountInputField';
 import PaymentOptionsDisplay from './paymentOptionsDisplay/PaymentOptionsDisplay';
+import styles from './CartContent.module.css';
 
 type CartProps = {
     currency: string;
@@ -27,29 +28,15 @@ const CartContent = ({ currency, onRemoveFromCart, onClose }: CartProps) => {
     let totalCartCost = totalItemCost;
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center',
-                height: '100%',
-                width: '100%'
-            }}
-        >
+        <div className={styles.cartContentWrapper}>
             {cartItems != null && cartItems.length > 0 ? (
                 <div
                     style={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center'
+                        flexDirection: 'column'
                     }}
                 >
-                    <ul
-                        style={{
-                            display: 'grid',
-                            gridTemplateRows: '1fr',
-                            justifyContent: 'center'
-                        }}
-                    >
+                    <ul>
                         {cartItems.map((item, index) => (
                             <CartListItem
                                 key={item.quantity.toString()}
