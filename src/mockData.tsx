@@ -26,3 +26,12 @@ export const menuItems: MenuItem[] = [
     { id: 4, title: 'about' },
     { id: 5, title: 'contact' }
 ];
+
+export const paymentOptionsImgs = [
+    { src: '/images/applePay.png' },
+    { src: '/images/googlePay.png' },
+    { src: '/images/klarna.png' },
+    { src: '/images/visa.png' },
+    { src: '/images/mastercard.png' },
+    { src: '/images/paypal.png' }
+];

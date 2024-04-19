@@ -1,0 +1,24 @@
+.displayContainer {
+    margin-top: auto;
+    width: 100%;
+}
+
+.displayContainer ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 1rem;
+    overflow: hidden;
+}
+.listItem {
+    padding: 0.2rem;
+    max-height: 50px;
+    max-width: 60px;
+}
+
+.listItem img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+}

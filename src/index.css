@@ -29,6 +29,16 @@ button {
     color: black;
 }
 
+input,
+textarea {
+    outline: none;
+    border: none;
+}
+
+ul {
+    list-style: none;
+}
+
 .logo-font {
     font-family: Outfit;
     font-style: normal;

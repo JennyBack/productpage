@@ -1,0 +1,32 @@
+.cartSummaryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cartSummaryContainer ul {
+    width: 100%;
+}
+
+.cartSummaryListItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.cartSummaryListItem h5 {
+    margin-right: auto;
+}
+
+.cartSummaryListItem p {
+    margin-left: auto;
+}
+
+.buttonContainer {
+    width: 100%;
+    margin: 1rem;
+    padding: 0 0.5rem;
+    height: 50px;
+}

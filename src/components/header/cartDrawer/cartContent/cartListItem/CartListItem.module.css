@@ -1,0 +1,35 @@
+.cartListItem {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template: 2fr;
+    padding: 0;
+    margin: 0;
+}
+
+.imgContainer {
+    place-self: start;
+    padding: 0.5rem;
+}
+
+.imgContainer img {
+    height: 100px;
+    width: auto;
+    max-width: 70px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.productDetailsContainer {
+    place-self: start;
+    padding: 0.5rem;
+}
+
+.deleteButtonContainer {
+    place-self: end;
+}
+
+.quantityPickerContainer {
+    place-self: end;
+    grid-area: 2 / 2 / auto / 4;
+    padding: 0.5rem;
+}
