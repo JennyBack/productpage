@@ -31,7 +31,6 @@ const ProductInfoSection = ({ product, currency, isMobile, handleAddToCart }: Pr
                     alignItems: 'center',
                     padding: isMobile ? '0.5em' : '3em',
                     overflow: 'hidden',
-                    maxWidth: '50%',
                     flexDirection: 'column'
                 }}
             >

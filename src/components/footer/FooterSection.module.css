@@ -1,0 +1,5 @@
+.linkList {
+    color: var(--white--);
+    padding: 1rem;
+    list-style: none;
+}

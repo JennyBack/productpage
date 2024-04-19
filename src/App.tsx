@@ -8,6 +8,7 @@ import ProductImageSlider from './components/main/productImageSlider/ProductImag
 import HeaderSection from './components/header/HeaderSection';
 import { createContext } from 'react';
 import { Product } from './types';
+import FooterSection from './components/footer/FooterSection';
 
 export type CartContextType = {
     productQuantity: number;
@@ -66,14 +67,8 @@ function App() {
                     />
                 </main>
             </CartContext.Provider>
-            <footer style={{ backgroundColor: 'var(--primary--)', width: '100%' }}>
-                <ul style={{ color: 'white', padding: '1rem', listStyle: 'none' }}>
-                    <li>
-                        <a href="https://jennydev.netlify.app/">Portfolio site</a>
-                    </li>
-                    <li>LinkedIn</li>
-                    <li>GitHub</li>
-                </ul>
+            <footer className={'footer'}>
+                <FooterSection />
             </footer>
         </div>
     );
