@@ -6,24 +6,47 @@ type Props = {
 };
 
 const useCart = ({ product }: Props) => {
-    const [numberOfProducts, setNumberOfProducts] = React.useState<number>(1);
+    const [productQuantity, setProductQuantity] = React.useState<number>(1);
     const [cartItems, setCartItems] = React.useState<Product[]>([]);
     const [openCart, setOpenCart] = React.useState<boolean>(false);
 
-    const handleAddProduct = () => {
-        setNumberOfProducts((prevState) => prevState + 1);
+    const handleResetProductQuantity = () => {
+        setProductQuantity(1);
     };
 
-    const handleRemoveProduct = () => {
-        if (numberOfProducts != 0) {
-            setNumberOfProducts((prevState) => prevState - 1);
+    const handleChangeProductQuantity = (add: boolean, productId?: number) => {
+        if (productId != undefined) {
+            if (add) {
+                let isProduct = (el: Product) => el.id === productId;
+                let index = cartItems.findIndex(isProduct);
+                let newArray = cartItems;
+                newArray[index].quantity = newArray[index].quantity + 1;
+
+                setCartItems([...newArray]);
+            }
+            if (!add) {
+                let isProduct = (el: Product) => el.id === productId;
+                let index = cartItems.findIndex(isProduct);
+                let newArray = cartItems;
+                newArray[index].quantity = newArray[index].quantity - 1;
+                setCartItems([...newArray]);
+            }
+        }
+        if (add && productId === undefined) {
+            setProductQuantity((prevState) => prevState + 1);
+        }
+        if (!add && productQuantity != 1 && productId === undefined) {
+            setProductQuantity((prevState) => prevState - 1);
         }
     };
 
     const handleAddToCart = (productId: number) => {
         let existsInCart: boolean = cartItems.some((product) => product.id === productId);
         if (product.id === productId && !existsInCart) {
-            setCartItems((prevState) => prevState.concat(product));
+            setCartItems((prevState) =>
+                prevState.concat({ ...product, quantity: productQuantity })
+            );
+            handleResetProductQuantity();
         }
     };
 
@@ -37,12 +60,11 @@ const useCart = ({ product }: Props) => {
     };
 
     return {
-        handleAddProduct,
-        handleRemoveProduct,
         handleAddToCart,
         handleRemoveFromCart,
         handleOpenCart,
-        numberOfProducts,
+        handleChangeProductQuantity,
+        productQuantity,
         openCart,
         cartItems
     };

@@ -18,3 +18,65 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font: inherit;
+    border-radius: 0;
+    cursor: pointer;
+    color: black;
+}
+
+input,
+textarea {
+    outline: none;
+    border: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.logo-font {
+    font-family: Outfit;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.heading-h2-regular {
+    color: var(--Very-dark-blue, #1d2025);
+    font-family: 'Kumbh Sans';
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.heading-h3-regular {
+    font-family: Kumbh sans;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.heading-h5-regular {
+    color: var(--primary--);
+    font-family: 'Kumbh Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+}
+
+.paragraph-regular {
+    color: var(--Grayish-blue, #68707d);
+    font-family: 'Kumbh Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: 0.56px;
+}

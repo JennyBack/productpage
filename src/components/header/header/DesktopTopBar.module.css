@@ -1,0 +1,25 @@
+.topNavigationBar {
+}
+
+.topNavigationBar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.topNavigationBar li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 1rem;
+    cursor: pointer;
+}
+
+.selectedMenuItem {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-bottom: 6px solid var(--primary--);
+    z-index: 10;
+}

@@ -1,0 +1,12 @@
+.cartContentWrapper {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.productListWrapper ul {
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-content: center;
+}

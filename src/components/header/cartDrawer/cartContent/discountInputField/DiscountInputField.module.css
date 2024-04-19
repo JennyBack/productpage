@@ -1,0 +1,29 @@
+.inputLabel {
+    visibility: hidden;
+}
+
+.discountForm {
+    margin-left: auto;
+    padding: 0 0.5rem;
+}
+
+.discountFieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    border: 2px solid var(--lightgrey--);
+    height: 60px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.discountFieldContainer input {
+    text-align: center;
+    background-color: transparent;
+}
+.discountFieldContainer i {
+    color: var(--icons--);
+    padding-right: 0.5rem;
+}

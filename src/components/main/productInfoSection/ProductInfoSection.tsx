@@ -6,11 +6,7 @@ type ProductInfoProps = {
     product: Product;
     currency: string;
     isMobile: boolean;
-    numberOfProducts: number;
-    handleAddProduct: () => void;
-    handleRemoveProduct: () => void;
     handleAddToCart: (productId: number) => void;
-    cartItems: Product[];
 };
 
 const ProductInfoSectionStyle = (isMobile: boolean) => {
@@ -21,21 +17,11 @@ const ProductInfoSectionStyle = (isMobile: boolean) => {
         width: isMobile ? '100%' : '50%',
         height: '100%',
         margin: 0,
-        padding: 0,
-        flexDirecton: 'column'
+        padding: !isMobile ? '3rem 0' : '2rem 0'
     };
 };
 
-const ProductInfoSection = ({
-    product,
-    currency,
-    isMobile,
-    numberOfProducts,
-    handleAddProduct,
-    handleRemoveProduct,
-    handleAddToCart,
-    cartItems
-}: ProductInfoProps) => {
+const ProductInfoSection = ({ product, currency, isMobile, handleAddToCart }: ProductInfoProps) => {
     return (
         <div style={ProductInfoSectionStyle(isMobile)}>
             <div
@@ -45,19 +31,15 @@ const ProductInfoSection = ({
                     alignItems: 'center',
                     padding: isMobile ? '0.5em' : '3em',
                     overflow: 'hidden',
-                    maxWidth: '600px',
+                    maxWidth: '50%',
                     flexDirection: 'column'
                 }}
             >
                 <ProductInfo product={product} currency={currency} />
                 <ProductCounter
                     productId={product.id}
-                    numberOfProducts={numberOfProducts}
-                    onAddProduct={handleAddProduct}
-                    onRemoveProduct={handleRemoveProduct}
                     onAddToCart={handleAddToCart}
                     label={'Add to cart'}
-                    numberOfItemsInCart={cartItems.length}
                     isMobile={isMobile}
                 />
             </div>

@@ -1,0 +1,17 @@
+.cartHeaderWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.cartHeaderWrapper h2 {
+    margin-right: 'auto';
+    padding-left: 1rem;
+}
+
+.iconButtonContainer {
+    margin-left: auto;
+}
+
+.icon {
+    color: var(--icons--);
+}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CartContext, CartContextType } from '../../../App';
 
 const IconButtonStyle = {
     backgroundColor: 'transparent',
@@ -27,7 +28,7 @@ const CounterStyle = {
 const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) => {
     return {
         border: 'none',
-        padding: 0,
+        padding: '1rem',
         font: 'inherit',
         cursor: 'pointer',
         display: 'flex',
@@ -43,25 +44,24 @@ const AddToCartButtonStyle = (disableCartButton?: boolean, isMobile?: boolean) =
 
 type ProductCounterProps = {
     productId: number;
-    numberOfProducts: number;
-    onAddProduct: () => void;
-    onRemoveProduct: () => void;
     onAddToCart: (productId: number) => void;
     label: string;
-    numberOfItemsInCart: number;
     isMobile: boolean;
 };
 
-const ProductCounter = ({
-    productId,
-    numberOfProducts,
-    onAddProduct,
-    onRemoveProduct,
-    onAddToCart,
-    label,
-    numberOfItemsInCart,
-    isMobile
-}: ProductCounterProps) => {
+const ProductCounter = ({ productId, onAddToCart, label, isMobile }: ProductCounterProps) => {
+    const cart = React.useContext<CartContextType | null>(CartContext);
+
+    let numberOfItemsInCart = cart && cart.cartItems.length;
+    let productQuantity = cart && cart.productQuantity;
+    let onChangeProductQuantity = cart && cart.onChangeProductQuantity;
+
+    const handleChangeQuantity = (add: boolean) => {
+        if (onChangeProductQuantity != null) {
+            onChangeProductQuantity(add);
+        }
+    };
+
     return (
         <div
             style={{
@@ -78,26 +78,29 @@ const ProductCounter = ({
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    width: isMobile ? '100%' : '30%',
+                    width: isMobile ? '100%' : '50%',
                     flexWrap: 'nowrap',
-                    margin: isMobile ? '0 0 12px 0' : '5px',
-                    backgroundColor: '#F7F8FD'
+                    margin: isMobile ? '0 0 12px 0' : '10px',
+                    backgroundColor: '#F7F8FD',
+                    padding: '1rem'
                 }}
             >
-                <button style={IconButtonStyle} onClick={onRemoveProduct}>
+                <button style={IconButtonStyle} onClick={() => handleChangeQuantity(false)}>
                     <RemoveIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
-                <p style={CounterStyle}>{numberOfProducts}</p>
-                <button style={IconButtonStyle} onClick={onAddProduct}>
+                <p style={CounterStyle}>{productQuantity}</p>
+                <button style={IconButtonStyle} onClick={() => handleChangeQuantity(true)}>
                     <AddIcon sx={{ color: 'rgb(119, 170, 158)' }} />
                 </button>
             </div>
             <button
-                style={AddToCartButtonStyle(numberOfItemsInCart > 0, isMobile)}
+                style={AddToCartButtonStyle(
+                    numberOfItemsInCart !== null && numberOfItemsInCart > 0,
+                    isMobile
+                )}
                 onClick={() => {
                     onAddToCart(productId);
                 }}
-                disabled={numberOfItemsInCart > 0}
             >
                 <ShoppingCartIcon sx={{ color: 'white', marginRight: '12px' }} />
                 <p
@@ -110,7 +113,9 @@ const ProductCounter = ({
                         lineHeight: 'normal'
                     }}
                 >
-                    {label}
+                    {numberOfItemsInCart != null && numberOfItemsInCart > 0
+                        ? 'Item added'
+                        : `${label}`}
                 </p>
             </button>
         </div>
